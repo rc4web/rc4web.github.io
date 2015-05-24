@@ -97,7 +97,7 @@ header .navbar-default ul.navbar-nav li a:hover {
 header .navbar-default ul.navbar-nav li a:hover:after {
   background: #ffffff;
 }
-header .navbar-default ul.navbar-nav li a.getApp {
+header .navbar-default ul.navbar-nav li a.joinUs {
   -webkit-border-radius: 5em;
   -moz-border-radius: 5em;
   -ms-border-radius: 5em;
@@ -109,7 +109,7 @@ header .navbar-default ul.navbar-nav li a.getApp {
   -o-transition: all 0.25s ease-in-out;
   transition: all 0.25s ease-in-out;
 }
-header .navbar-default ul.navbar-nav li a.getApp:after {
+header .navbar-default ul.navbar-nav li a.joinUs:after {
   display: none;
 }
 header .navbar-default .navbar-brand {
@@ -209,10 +209,10 @@ section#about .about-item i.fa {
   transition: all 0.25s ease-in-out;
   width: 104px;
 }
-section#features .media > .pull-right {
+section#houses .media > .pull-right {
   margin-left: 20px;
 }
-section#features .media i.fa {
+section#houses .media i.fa {
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
   -ms-border-radius: 50%;
@@ -227,23 +227,23 @@ section#features .media i.fa {
   width: 2.6em;
   text-align: center;
 }
-section#features .media .media-heading {
+section#houses .media .media-heading {
   padding-top: 10px;
   font-weight: 300;
 }
-section#features .media .media-body {
+section#houses .media .media-body {
   color: #999999;
 }
-section#features .media.media-left .media-body {
+section#houses .media.media-left .media-body {
   text-align: right;
 }
-section#features .media.feature {
+section#houses .media.feature {
   margin-top: 25px;
 }
-section#features .media.feature:first-child {
+section#houses .media.feature:first-child {
   margin-top: 0;
 }
-section#features img {
+section#houses img {
   margin: 0 auto 20px;
 }
 section#reviews {
@@ -392,10 +392,10 @@ section#reviews .filter a {
   -o-transition: all 0.25s ease-in-out;
   transition: all 0.25s ease-in-out;
 }
-section#screens .slider {
+section#interest .slider {
   margin: 50px 0;
 }
-section#screens .slider div img {
+section#interest .slider div img {
   -webkit-border-radius: 20px;
   -moz-border-radius: 20px;
   -ms-border-radius: 20px;
@@ -404,35 +404,35 @@ section#screens .slider div img {
   padding: 10px;
   display: inline;
 }
-section#screens .slider div h4 {
+section#interest .slider div h4 {
   text-align: center;
   margin-top: 40px;
   font-size: 16px;
 }
-section#screens .slider .slick-dots li button {
+section#interest .slider .slick-dots li button {
   -webkit-border-radius: 5em;
   -moz-border-radius: 5em;
   -ms-border-radius: 5em;
   -o-border-radius: 5em;
   border-radius: 5em;
 }
-section#screens .slick-prev,
-section#screens .slick-next {
+section#interest .slick-prev,
+section#interest .slick-next {
   width: 50px;
   height: 50px;
   top: 44%;
 }
-section#screens .slick-slide {
+section#interest .slick-slide {
   text-align: center;
 }
-section#screens .slick-prev:before {
+section#interest .slick-prev:before {
   content: "\f104";
 }
-section#screens .slick-next:before {
+section#interest .slick-next:before {
   content: "\f105";
 }
-section#screens .slick-prev:before,
-section#screens .slick-next:before {
+section#interest .slick-prev:before,
+section#interest .slick-next:before {
   font-size: 34px;
   -webkit-border-radius: 5em;
   -moz-border-radius: 5em;
@@ -447,10 +447,10 @@ section#screens .slick-next:before {
   height: 50px;
   text-align: center;
 }
-section#screens .filter {
+section#interest .filter {
   text-align: center;
 }
-section#screens .filter a {
+section#interest .filter a {
   display: inline-block;
   padding: 7px 20px;
   text-decoration: none;
@@ -480,18 +480,18 @@ section#demo iframe {
   border: none;
 }
 /* Get app Section */
-section#getApp {
+section#joinUs {
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
   padding: 70px 0;
 }
-section#getApp .platforms {
+section#joinUs .platforms {
   margin: 5px auto 120px auto;
   text-align: center;
 }
-section#getApp .platforms .btn {
+section#joinUs .platforms .btn {
   margin-right: 10px;
   margin-bottom: 20px;
 }
@@ -609,12 +609,21 @@ section::after {
   color: #ffffff;
   font-size: 65px;
   font-weight: 400;
+  text-shadow: 0 2px 0 rgba(51, 153, 153, 0.4);
 }
 .tp-caption.large_white_light {
   color: #ffffff;
   font-size: 65px;
   font-weight: 400;
   font-weight: 300;
+  text-shadow: 0 2px 0 rgba(51, 153, 153, 0.4);
+}
+.tp-caption.large_teal {
+  color: rgba(51, 153, 153, 1.0);
+  font-size: 65px;
+  font-weight: 400;
+  font-weight: 300;
+  text-shadow: 0 5px 5px rgba(255, 255, 255, 0.4);
 }
 .btn {
   -webkit-border-radius: 3em;
@@ -730,7 +739,7 @@ form textarea.form-control {
     padding: 10px;
     text-align: center;
   }
-  header .navbar-default ul.navbar-nav li a.getApp {
+  header .navbar-default ul.navbar-nav li a.joinUs {
     background: none !important;
     -webkit-border-radius: 0em;
     -moz-border-radius: 0em;
@@ -783,7 +792,7 @@ header .navbar-default ul.navbar-nav li a {
   color: #ffffff;
   background: none;
 }
-header .navbar-default ul.navbar-nav li a.getApp {
+header .navbar-default ul.navbar-nav li a.joinUs {
   color: #3cb4b4;
   background: #ffffff;
   /* Old browsers */
@@ -802,7 +811,7 @@ header .navbar-default ul.navbar-nav li a.getApp {
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#ffffff, endColorstr=#e0e0e0, GradientType=1);
   /* IE6-9 fallback on horizontal gradient */
 }
-header .navbar-default ul.navbar-nav li a.getApp:hover {
+header .navbar-default ul.navbar-nav li a.joinUs:hover {
   color: #40bfbf;
   background: #ffffff;
   /* Old browsers */
@@ -863,28 +872,28 @@ section#about .about-item:hover i.fa {
 section#about .about-item:hover h3 {
   color: #66cc99;
 }
-section#features {
+section#houses {
   background: #f6f6f6;
 }
-section#features header h1:after {
+section#houses header h1:after {
   background: #66cc99;
 }
-section#features .media i.fa {
+section#houses .media i.fa {
   border: 2px solid #66cc99;
   color: #66cc99;
 }
-section#features .media:hover i.fa {
+section#houses .media:hover i.fa {
   color: #ffffff;
   background: #66cc99;
 }
-section#features .media:hover h3 {
+section#houses .media:hover h3 {
   color: #66cc99;
 }
-section#features .media.active i.fa {
+section#houses .media.active i.fa {
   color: #ffffff;
   background: #66cc99;
 }
-section#features .media.active .media-heading {
+section#houses .media.active .media-heading {
   color: #66cc99;
 }
 section#reviews {
@@ -936,31 +945,31 @@ section#reviews .filter a.active {
   border-color: #66cc99;
 }
 
-section#screens header h1:after {
+section#interest header h1:after {
   background: #66cc99;
 }
-section#screens .slider div img {
+section#interest .slider div img {
   border: 2px solid #e5e5e5;
 }
-section#screens .slider div h4 {
+section#interest .slider div h4 {
   color: #999999;
 }
-section#screens .slider .slick-dots li button {
+section#interest .slider .slick-dots li button {
   background: #999999;
 }
-section#screens .slider .slick-dots li.slick-active button {
+section#interest .slider .slick-dots li.slick-active button {
   background: #66cc99;
 }
-section#screens .filter a {
+section#interest .filter a {
   border: 2px solid #cccccc;
   color: #999999;
 }
-section#screens .filter a:hover {
+section#interest .filter a:hover {
   color: #ffffff;
   background: #66cc99;
   border-color: #66cc99;
 }
-section#screens .filter a.active {
+section#interest .filter a.active {
   color: #ffffff;
   background: #66cc99;
   border-color: #66cc99;
@@ -973,30 +982,30 @@ section#demo header h1:after {
   background: #66cc99;
 }
 /* Get app Section */
-section#getApp {
+section#joinUs {
   background: url("../img/eco/bk-eco-ga.jpg");
 }
-section#getApp header {
+section#joinUs header {
   color: #ffffff;
 }
-section#getApp header h1:after {
+section#joinUs header h1:after {
   background: #ffffff;
 }
-section#getApp .platforms .media {
+section#joinUs .platforms .media {
   border: 2px solid #ffffff;
   color: #ffffff;
 }
-section#getApp .platforms .media a i {
+section#joinUs .platforms .media a i {
   color: #ffffff;
 }
-section#getApp .platforms .media a div.media-body {
+section#joinUs .platforms .media a div.media-body {
   color: #ffffff;
 }
-section#getApp .platforms .media:hover {
+section#joinUs .platforms .media:hover {
   background: #ffffff;
 }
-section#getApp .platforms .media:hover a i,
-section#getApp .platforms .media:hover a div.media-body {
+section#joinUs .platforms .media:hover a i,
+section#joinUs .platforms .media:hover a div.media-body {
   color: #66cc99;
 }
 /* support section */
@@ -1113,7 +1122,7 @@ form .form-control:focus {
     color: #ffffff;
     border-bottom: 1px solid #37a4a4;
   }
-  header .navbar-default ul.navbar-nav li a.getApp {
+  header .navbar-default ul.navbar-nav li a.joinUs {
     color: #ffffff;
   }
   header .navbar-default ul.navbar-nav li a:after {
