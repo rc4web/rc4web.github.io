@@ -859,7 +859,7 @@ header .navbar-default.scrolled .navbar-brand {
   background: #339999;
 }
 section .section-heading .divider:after {
-  background: #66cc99;
+  background: #339999;
 }
 section#about .about-item i.fa {
   border: 2px solid #66cc99;
@@ -971,8 +971,8 @@ section#interest .filter a:hover {
 }
 section#interest .filter a.active {
   color: #ffffff;
-  background: #66cc99;
-  border-color: #66cc99;
+  background: #339999;
+  border-color: #339999;
 }
 /* demo video Section */
 section#demo {
