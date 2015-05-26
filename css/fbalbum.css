@@ -1,10 +1,11 @@
 h3.fb-album-heading, h3.fb-account-heading {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Lato', Arial;
     display: inline-block;
     margin: 0px;
     margin-left: 10px;
     font-weight: lighter;
-    color: rgba(59, 89, 152, 1);
+    color: #339999;
+    -webkit-font-smoothing: antialiased;
 }
 
 h3.fb-album-heading {
@@ -14,10 +15,11 @@ h3.fb-album-heading {
 ul.fb-albums, ul.fb-photos {
     list-style: none;
     list-style-type: none;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Lato', Arial;
     font-size: 14px;
     margin: 0px;
     padding: 0px;
+    -webkit-font-smoothing: antialiased;
 }
 
 .fb-loading {
@@ -25,27 +27,32 @@ ul.fb-albums, ul.fb-photos {
     border-radius: 6px;
     width: 64px;
     height: 64px;
-    background-image: url('loader.gif');
+    background-image: url('img/loading.gif');
     background-position: center center;
     background-repeat: no-repeat;
 }
 
 li.fb-album, li.fb-photo {
     display: inline-block;
-    width: 130px;
-    height: 130px;
+    width: 180px;
+    height: 150px;
     overflow: hidden;
-    padding: 0px;
+    /*padding: 0px*/;
     background-color: #f7f7f7;
     /*margin-top: -4px;
     margin-bottom: 3px;
     margin-right: 3px;*/
-    background-image: url('loader.gif');
+    background-image: url('img/loading.gif');
     background-position: center center;
     background-repeat: no-repeat;
     cursor: pointer;
-    border: 1px solid #fff;
-    border-bottom-style: none;
+    /*border-bottom-style: none;*/
+    border: 2px solid #e5e5e5;
+      border-radius: 20px;
+  padding: 10px;
+  box-sizing: border-box;
+  margin: 10px;
+    vertical-align: middle;
 }
 
     li.fb-photo:hover {
@@ -73,11 +80,16 @@ li.fb-album, li.fb-photo {
 
     li.fb-album img {
         display: none;
+        vertical-align: middle;
+       /* width: 160px;
+        height: 130px;*/
+   /* clip: rect(10px, 20px, 160px, 120px);*/
     }
 
 div.fb-album-title {
     color: #fff;
-    background-color: rgba(59,89,152,1);
+    background-color: #339999;
+    /* rgba(59,89,152,1)*/
     position: relative;
     margin-top: 0px;
     padding: 5px;
@@ -103,6 +115,7 @@ div.fb-album-count {
 .fb-photo-thumb, .fb-photo-thumb-link {
     border: none;
     text-decoration: none;
+    margin-left:-19.5;
 }
 
 img.fb-albums-list {
@@ -126,12 +139,12 @@ img.fb-albums-list {
 
 /*Simple lightbox*/
 .fb-preview-overlay {
-    background-color: rgba(59, 89, 152, 0.7);
+    background-color: rgba(20, 20, 20, 0.7);
     position: fixed;
     top: 0px;
     left: 0px;
     z-index: 999;
-    background-image: url('loader.gif');
+    background-image: url('img/loading.gif');
     background-position: center center;
     background-repeat: no-repeat;
     width: 100%;

@@ -7,6 +7,7 @@ $(document).ready(function () {
         showImageText: true,
         lightbox: true,
         photosCheckbox: false,
+        likeButton: false,
         photoChecked: function(photo){
             console.log("PHOTO CHECKED: " + photo.id + " - " + photo.url + " - " + photo.thumb);
             console.log("CHECKED PHOTOS COUNT: " + this.checkedPhotos.length);
