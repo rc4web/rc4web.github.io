@@ -116,6 +116,7 @@ div.fb-album-count {
     border: none;
     text-decoration: none;
     margin-left:-19.5;
+    transform: translateX(-19.5px);
 }
 
 img.fb-albums-list {
@@ -162,6 +163,15 @@ img.fb-albums-list {
 .fb-preview-img {
     max-width: 100%;
     width: auto;
+    position: absolute;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  margin-top: auto;
+  margin-bottom: auto;
+  top: 15px;
+  bottom: 0;
 }
 
 .fb-preview-img-prev, .fb-preview-img-next {
@@ -169,7 +179,13 @@ img.fb-albums-list {
     display: none;
     margin-top: auto;
     position: absolute;
-    top: 50%;
+    vertical-align: middle;
+    /*top: 50%;*/
+    margin-top: auto;
+    margin-bottom: auto;
+    top: 0;
+    bottom: 0;
+    height: 20px;
 }
 
 .fb-preview-img-prev {
@@ -205,6 +221,7 @@ img.fb-albums-list {
 
     .fb-preview-content{
          margin-top:30px;
+         /*transform: translateY(50%);*/
     }
     .fb-like-container{
         display:block;
