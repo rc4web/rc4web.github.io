@@ -123,7 +123,7 @@
                       <i class="fa fa-clock-o bg-gray"></i>
                     </li>
                     <li>
-                      <a class="btn btn-primary btn-xs">Get more</a>
+                      <i><a class="btn btn-primary btn-xs centralbtn">Load More</a></i>
                     </li>
                   </ul>
                 </div><!-- /.col -->
@@ -209,8 +209,9 @@
             var title = content.querySelector('.timeline-header');
             title.textContent = tumblr_api_read.posts[i]['regular-title'];
             var body = content.querySelector('.timeline-body');
-            body.textContent = tumblr_api_read.posts[i]['regular-body'];
+            body.innerHTML = tumblr_api_read.posts[i]['regular-body'];
 
+            //var time = timeConverter(0);
             var time = timeConverter(tumblr_api_read.posts[i]['unix-timestamp']);
             var timeText = content.querySelector('.timeText');
             timeText.textContent = time[1];

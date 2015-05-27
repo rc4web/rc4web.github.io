@@ -143,3 +143,13 @@ body {
   left: 18px;
   top: 0;
 }
+
+.centralbtn {
+  max-width: 100%;
+  width: auto;
+  position: absolute;
+  margin-left: 40%;
+  margin-right: 40%;
+  left: 0;
+  right: 0;
+}
