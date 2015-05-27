@@ -120,6 +120,7 @@ body {
 }
 .bg-teal {
   background-color: #339999;
+  color: #339999;
 }
 .timeline > li.time-label > span {
   font-weight: 600;
@@ -136,8 +137,8 @@ body {
   font-size: 15px;
   line-height: 30px;
   position: absolute;
-  color: #666;
-  background: #d2d6de;
+  color: #fff;
+  background: #339999;
   border-radius: 50%;
   text-align: center;
   left: 18px;
@@ -152,4 +153,19 @@ body {
   margin-right: 40%;
   left: 0;
   right: 0;
+}
+
+.timeline img {
+  max-width: 100%;
+  width: auto;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  height: inherit;
+  display: block;
+}
+
+.orcasays_caption {
+  text-align: left;
 }
