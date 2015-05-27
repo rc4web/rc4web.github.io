@@ -23,6 +23,7 @@
     <script type="text/javascript" src="js/modernizr.custom.32033.js"></script>
     
     <link rel="stylesheet" href="css/eco.css">
+    <link rel="stylesheet" href="css/timeline.css">
 
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -83,16 +84,6 @@
                 <!-- /.container-->
         </nav>
 
-        
-        <!--RevSlider-->
-        <!-- <div class="tp-banner-container">
-            <div class="tp-banner" >
-                <ul>
-                    
-                    
-                </ul>
-            </div>
-        </div> -->
         <section id="joinUs">
             <div class="container-fluid">
                 <div class="section-heading inverse scrollpoint sp-effect3">
@@ -107,16 +98,10 @@
                         <div class="hanging-phone scrollpoint sp-effect2 hidden-xs">
                             <img src="img/eco/eco-angled2.png" alt="">
                         </div>
-
                     </div>
                 </div>
-
-                
-
             </div>
         </section>
-
-
     </header>
 
 
@@ -124,32 +109,26 @@
 
         
 
-        <section id="about">
+        <section id="houses">
             <div class="container">
-                
-                <div class="section-heading scrollpoint sp-effect3">
-                </div>
-
                 <div class="row">
-                <div class="col-md-3">
+                    <br><br>
                 </div>
-                <div class="col-md-9">
-                    <script type="text/javascript" src="http://orcasays.tumblr.com/api/read/json"></script>
-
-                    <script type="text/javascript">
-                        // The variable "tumblr_api_read" is now set.
-                        for(i = 0; i < 10; i++)
-                        {
-                            document.write(
-                                '<div><h2>' +tumblr_api_read.posts[i]['regular-title']  + 
-                                '</h2>' +
-                                tumblr_api_read.posts[i]['regular-body'] +
-                                '</div><div class="divider"></div>'
-                            );
-                        }
-                    </script>
-                </div>
-                </div>
+                <div class="row">
+                <div class="col-md-1"></div>
+                <div class="col-md-10">
+                  <!-- The time line -->
+                  <ul class="timeline">
+                    <li class = "contentBeforeThis">
+                      <i class="fa fa-clock-o bg-gray"></i>
+                    </li>
+                    <li>
+                      <a class="btn btn-primary btn-xs">Get more</a>
+                    </li>
+                  </ul>
+                </div><!-- /.col -->
+                <div class="col-md-1"></div>
+              </div><!-- /.row -->
             </div>
         </section>
 
@@ -172,6 +151,30 @@
         </footer>
 
     </div>
+
+    <template>
+        <!-- timeline time label -->
+        <li class="time-label scrollpoint sp-effect1">
+          <span class="bg-teal date">
+            10 Feb. 2014
+          </span>
+        </li>
+        <!-- /.timeline-label -->
+        <!-- timeline item -->
+        <li>
+          <i class="fa fa-envelope bg-teal"></i>
+          <div class="timeline-item scrollpoint sp-effect2">
+            <span class="time"><i class="fa fa-clock-o"></i> <i class="timeText">12:05</i></span>
+            <h3 class="timeline-header">Title</h3>
+            <div class="timeline-body">
+              Text
+            </div>
+            <div class='timeline-footer'></div>
+          </div>
+        </li>
+        <!-- END timeline item -->
+    </template>
+    
     <script src="js/jquery-1.11.1.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/slick.min.js"></script>
@@ -184,6 +187,39 @@
         $(document).ready(function() {
             appMaster.preLoader();
         });
+    </script>
+    <script type="text/javascript" src="http://orcasays.tumblr.com/api/read/json"></script>
+    <script>
+        function timeConverter(UNIX_timestamp){
+          var a = new Date(UNIX_timestamp*1000);
+          var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+          var year = a.getFullYear();
+          var month = months[a.getMonth()];
+          var date = a.getDate();
+          var hour = a.getHours();
+          var min = a.getMinutes() < 10 ? '0' + a.getMinutes() : a.getMinutes();
+          var time = {};
+          time[0] = date + ' ' + month + ' ' + year;
+          time[1] = hour + ':' + min;
+          return time;
+        }
+        for(i = 0; i < 10; i++)
+        {
+            var content = document.querySelector('template').content;
+            var title = content.querySelector('.timeline-header');
+            title.textContent = tumblr_api_read.posts[i]['regular-title'];
+            var body = content.querySelector('.timeline-body');
+            body.textContent = tumblr_api_read.posts[i]['regular-body'];
+
+            var time = timeConverter(tumblr_api_read.posts[i]['unix-timestamp']);
+            var timeText = content.querySelector('.timeText');
+            timeText.textContent = time[1];
+            var dateText = content.querySelector('.date');
+            dateText.textContent = time[0];
+
+            document.querySelector('.timeline').insertBefore(
+                document.importNode(content, true),document.querySelector('.contentBeforeThis'));
+        }
     </script>
 </body>
 
