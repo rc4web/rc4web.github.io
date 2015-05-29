@@ -134,6 +134,7 @@ header .navbar-default.scrolled .navbar-brand {
 header .navbar-default.scrolled .navbar-brand img {
   width: auto;
   max-height: 33px;
+  content: url("../img/eco/logo.png");
 }
 header .navbar-default.scrolled ul.navbar-nav {
   padding-top: 15px;
@@ -791,10 +792,12 @@ header {
 header .navbar-default ul.navbar-nav li a {
   color: #ffffff;
   background: none;
+  text-shadow: 1px 1px 3px #000;
 }
 header .navbar-default ul.navbar-nav li a.joinUs {
   color: #3cb4b4;
   background: #ffffff;
+  text-shadow: none;
   /* Old browsers */
   background: -moz-linear-gradient(180deg, #ffffff 0%, #e0e0e0 100%);
   /* FF3.6+ */
@@ -848,6 +851,7 @@ header .navbar-default.scrolled {
 }
 header .navbar-default.scrolled ul.navbar-nav li a {
   color: #339999;
+  text-shadow: none;
 }
 header .navbar-default.scrolled ul.navbar-nav li a:hover {
   color: #339999;
