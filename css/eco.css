@@ -865,6 +865,33 @@ header .navbar-default.scrolled .navbar-brand {
 section .section-heading .divider:after {
   background: #339999;
 }
+section#about .about-img {
+  color: #fff;
+  display: block;
+  text-align: center;
+  width: 380px;
+  height: 260px;
+  overflow: hidden;
+  background-color: #fff;
+  background-position: center center;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  border-bottom-style: none;
+  border: 2px solid #e5e5e5;
+  border-radius: 10px;
+  box-sizing: border-box;
+  margin: 10px;
+  vertical-align: middle;
+}
+section#about .section-heading {
+  margin: 60px 0 30px;
+}
+section#about .about-img img{
+  border-radius: 20px;
+  padding: 10px;
+  display: block;
+  width: 380px;
+}
 section#about .about-item i.fa {
   border: 2px solid #66cc99;
   color: #66cc99;
@@ -873,8 +900,12 @@ section#about .about-item:hover i.fa {
   color: #ffffff;
   background: #66cc99;
 }
-section#about .about-item:hover h3 {
-  color: #66cc99;
+section#about .about-item h3 {
+  color: #339993;
+  text-align: left;
+}
+section#about .about-item p{
+  text-align: left;
 }
 section#houses {
   background: #f6f6f6;
