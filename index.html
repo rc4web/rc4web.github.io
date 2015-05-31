@@ -154,7 +154,7 @@
 
                         
                         <div class="tp-caption large_white_bold sft" data-x="center" data-y="bottom" data-hoffset="0" data-voffset="-150" data-speed="1000" data-start="1400" data-easing="Power4.easeOut">
-                            Interest Groups Galore <i class="fa fa-heart"></i>
+                            Fun-loving & Warmhearted <i class="fa fa-heart"></i>
                         </div>
                         
                         
@@ -180,7 +180,7 @@
                         </div>
 
                         <div class="tp-caption customin customout visible-xs"
-                            data-x="center"
+                            data-x="right"
                             data-y="bottom"
                             data-hoffset="0"
                             data-customin="x:50;y:150;z:0;rotationX:0;rotationY:0;rotationZ:0;scaleX:0.5;scaleY:0.5;skewX:0;skewY:0;opacity:0;transformPerspective:0;transformOrigin:50% 50%;"
@@ -427,13 +427,13 @@
                             <img src="img/eco/eco-angled2.png" alt="">
                         </div>
                         <div class="platforms">
-                            <a href="#" class="btn btn-primary inverse scrollpoint sp-effect1">
+                            <a href="http://rc4.nus.edu.sg/admission.htm" class="btn btn-primary inverse scrollpoint sp-effect1">
                                 <i class="fa fa-info-circle fa-3x pull-left"></i>
                                 <span>Application Details at</span><br>
                                 <b>RC4's College Website</b>
                             </a>
                             
-                                <a href="#" class="btn btn-primary inverse scrollpoint sp-effect2">
+                                <a href="https://myaces.nus.edu.sg/prjrca/" class="btn btn-primary inverse scrollpoint sp-effect2">
                                     <i class="fa fa-edit fa-3x pull-left"></i>
                                     <span>Apply now at</span><br>
                                     <b>UTCP Portal</b>
@@ -535,6 +535,8 @@
     <script>
         $(document).ready(function() {
             appMaster.preLoader();
+            //Quick Fix for mobile cannot scroll
+            $('.tp-banner').attr("style", "height: 100%; max-height: none;");
         });
     </script>
 
