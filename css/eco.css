@@ -795,7 +795,7 @@ header .navbar-default ul.navbar-nav li a {
   text-shadow: 1px 1px 3px #000;
 }
 header .navbar-default ul.navbar-nav li a.joinUs {
-  color: #3cb4b4;
+  color: #339993;
   background: #ffffff;
   text-shadow: none;
   /* Old browsers */
@@ -869,8 +869,8 @@ section#about .about-img {
   color: #fff;
   display: block;
   text-align: center;
-  width: 380px;
-  height: 260px;
+  width: 100%;
+  height: 100%;
   overflow: hidden;
   background-color: #fff;
   background-position: center center;
@@ -895,7 +895,7 @@ section#about .about-img img{
   border-radius: 20px;
   padding: 10px;
   display: block;
-  width: 380px;
+  width: 100%;
 }
 section#about .about-item i.fa {
   border: 2px solid #66cc99;
