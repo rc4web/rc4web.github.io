@@ -112,6 +112,7 @@ header .navbar-default ul.navbar-nav li a.joinUs {
 header .navbar-default ul.navbar-nav li a.joinUs:after {
   display: none;
 }
+
 header .navbar-default .navbar-brand {
   height: auto;
   padding: 0;
@@ -838,14 +839,22 @@ header .navbar-default ul.navbar-nav li a.joinUs:hover {
   -o-transition: all 0.25s ease-in-out;
   transition: all 0.25s ease-in-out;
 }
-header .navbar-default ul.navbar-nav li a:hover {
+
+header .navbar-default.scrolled ul.navbar-nav li a.joinUs {
   color: #ffffff;
+  background: #339999;
+}
+
+header .navbar-default.scrolled ul.navbar-nav li a.joinUs:hover {
+  color: #ffffff;
+  background: #66cc99;
   -webkit-transition: all 0.25s ease-in-out;
   -moz-transition: all 0.25s ease-in-out;
   -ms-transition: all 0.25s ease-in-out;
   -o-transition: all 0.25s ease-in-out;
   transition: all 0.25s ease-in-out;
 }
+
 header .navbar-default.scrolled {
   border-bottom: 3px solid #339999;
 }
