@@ -1,6 +1,7 @@
 $(document).ready(function () {
   $(".fb-album-container").FacebookAlbumBrowser({
         account: "NUSResidentialCollege4",
+        accessToken: "775908159169504|cYEIsh0rs25OQQC8Ex2hXyCOut4",
         skipAlbums: ["Profile Pictures", "Timeline Photos", "Cover Photos"],
         showAccountInfo: false,
         showImageCount: false,
