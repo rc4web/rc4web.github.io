@@ -189,8 +189,8 @@ var appMaster = {
                 '<div class="popup_wrap">'+
                     '<div class="popup_content"></div>'+
                     '<div class="popup_nav">'+
-                        '<a href="popup_next"><img src="" alt="">next</a>'+
-                        '<a href="popup_prev"><img src="" alt="">prev</a>'+
+                        '<a href="popup_next"></a>'+
+                        '<a href="popup_prev"></a>'+
                     '</div>'+
                 '</div>'+
                  '<div class="popup_details">'+

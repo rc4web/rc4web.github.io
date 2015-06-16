@@ -1272,14 +1272,20 @@ form .form-control:focus {
 }
 .popup .popup_nav a {
   height: 100%;
+  opacity: 0;
+}
+.popup .popup_nav a:hover {
+  opacity: 1;
 }
 .popup .popup_nav a[href="popup_prev"] {
   float: left;
   width: 50%;
+  background: url("../img/plugins/prev-icon.png") left center no-repeat;
 }
 .popup .popup_nav a[href="popup_next"] {
   float: right;
   width: 50%;
+  background: url("../img/plugins/next-icon.png") right center no-repeat;
 }
 .popup .popup_details {
   padding: 10px 5px 5px 5px;
