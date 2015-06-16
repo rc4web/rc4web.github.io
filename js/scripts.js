@@ -180,6 +180,7 @@ var appMaster = {
                 for reference in next and prev links 
             */
             gallery: '.popup_ig_gallery',
+            scrollable: false,
             
             // standard plugin properties
             closeContent: '',
@@ -254,9 +255,17 @@ var appMaster = {
                 plugin.center();
             },
 
+            afterOpen: function() {
+                var plugin = this;
+                if (plugin.o.scrollable === false) {
+                    $('body').addClass('no-scroll');
+                }
+            },
             afterClose: function() {
                 // resets the gallery index
                 this.currentIndex = undefined;
+    
+                $('body').removeClass('no-scroll');
             },
         };
 
