@@ -1258,6 +1258,32 @@ form .form-control:focus {
   background: #339999;
 }
 
+/* popup for ig */
+.popup .popup_wrap {
+  padding-bottom: 5px;
+}
+.popup .popup_extra {
+  margin: 5px;
+}
+.popup a[href='popup_next'] {
+  float: right;
+}
+.popup a[href='popup_prev'] {
+  float: left;
+}
+.popup .description {
+  width: 100%;
+  padding-top: 5px;
+}
+.popup .description ul {
+  list-style: none;
+  margin: auto;
+  padding: 0;
+}
+.popup .description ul li {
+  display: block;
+}
+
 @media (min-width: 768px) and (max-width: 992px) {
   .navbar-header {
     float: none;

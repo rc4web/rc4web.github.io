@@ -175,20 +175,32 @@ var appMaster = {
         // Popup Overlay
         var ig_settings = {
             /*
-                custom variable 
+                custom property 
                 groups associated items together 
                 for reference in next and prev links 
             */
             gallery: '.popup_ig_gallery',
             
-            // standard plugin variables
+            // standard plugin properties
             markup: 
-            '<div class="popup">'                                        +
-            '    <div class="popup_wrap">'                               +
-            '        <div class="popup_content"></div>'                  +
-            '    </div>'                                                 +
-            '    <a href="popup_next"><img src="" alt="">next</a>'       +
-            '    <a href="popup_prev"><img src="" alt="">prev</a>'       +
+            '<div class="popup">'+
+                '<div class="popup_wrap">'+
+                   '<div class="popup_content"></div>'+
+                   '<div class="popup_extra">'+
+                        '<div class="controls clearfix">'+
+                           '<a href="popup_next"><img src="" alt="">next</a>'+
+                           '<a href="popup_prev"><img src="" alt="">prev</a>'+
+                        '</div>'+
+                        '<div class="description">'+
+                            '<ul>'+
+                                '<li>President: Abraham Lincoln</li>'+
+                                '<li>Time: 3:19 am</li>'+
+                                '<li>Location: White House</li>'+
+                                '<li>blah: Lorem ipsum dolor</li>'+
+                            '</ul>'+
+                        '</div>'+
+                   '</div>'+
+                '</div>'+
             '</div>',
 
             replaced: function($popup, $back){
@@ -198,10 +210,10 @@ var appMaster = {
                 // Animate the popup to new size
                 $wrap.animate({
                     width : $wrap.children().children().outerWidth(true),
-                    height : $wrap.children().children().outerHeight(true)
+                    height : $wrap.children('.popup_content').outerHeight(true) +
+                             $wrap.children('.popup_extra').outerHeight(true)
                 }, {
                     duration : 500,
-                    // easing : 'easeOutBack',
                     step : function(){
                         // Need to center the poup on each step
                         $popup.css({
@@ -225,20 +237,23 @@ var appMaster = {
                 var plugin = this,
                     $wrap = $('.popup_wrap', $popup);
                 
-                // Center the plugin
-                plugin.center();
-                
                 // Default fade in
-                $popup
-                .animate({opacity : 1}, plugin.o.speed, function(){
-                    plugin.o.afterOpen.call(plugin);
-                });
+                $popup.animate({opacity : 1}, plugin.o.speed, 
+                    function(){
+                        plugin.o.afterOpen.call(plugin);
+                    });
                 
                 // Set the inline styles as we animate later
                 $wrap.css({
-                    width  : $wrap.outerWidth(true),
-                    height : $wrap.outerHeight(true)
+                    width  : $wrap.children().children().outerWidth(true),
+                    height : $wrap.children('.popup_content').outerHeight(true) +
+                             $wrap.children('.popup_extra').outerHeight(true) + 20
+                    // hackish
+                    // does not detect clearfix height on show() so manually add 20
                 });
+
+                // Center the plugin
+                plugin.center();
             },
 
             afterClose: function() {
@@ -252,7 +267,6 @@ var appMaster = {
 
         // next and prev links for any items using Popup.js plugin
         $(document).on('click', '[href="popup_next"], [href="popup_prev"]', function(e) {
-            console.log("next prev")
             e.preventDefault();
             var $current = $('.popup_active'),
                 popup = $current.data('popup'),
