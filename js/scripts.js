@@ -290,7 +290,7 @@ var appMaster = {
 
 $(document).ready(function() {
 
-    // appMaster.smoothScroll();
+    appMaster.smoothScroll();
 
     appMaster.reviewsCarousel();
 
