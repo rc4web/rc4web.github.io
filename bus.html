@@ -111,6 +111,7 @@
                 <div class="row">
                     <div class="col-md-2"></div>
                     <div class="col-md-4">
+                    <b>Utown Internal Shuttle Bus Stop</b>
                         <table class="table table-bordered table-striped table-hover">
                             <thead>
                               <tr>
@@ -128,7 +129,10 @@
                         </tbody>
                     </table>
                 </div><!-- /.col -->
-                <div class="col-md-4">
+            <div class="col-md-4">
+                    <div class="row">
+                    <div class="col-md-12">
+                    <b>RC4 Dover Road Bus Stop (Towards Clementi)</b>
                     <table class="table table-bordered table-striped table-hover">
                         <thead>
                           <tr>
@@ -137,14 +141,36 @@
                             <th>After</th>
                         </tr>
                     </thead>
-                    <tbody data-bind="foreach: bus">
+                    <tbody data-bind="foreach: lta_bus">
                         <tr>
-                            <td data-bind="text: name"></td>
-                            <td data-bind="text: arrivalTime"></td>
-                            <td data-bind="text: nextArrivalTime"></td>
+                            <td data-bind="text: no"></td>
+                            <td data-bind="text: next.time"></td>
+                            <td data-bind="text: subsequent.time"></td>
                         </tr>
                     </tbody>
                 </table>
+                </div>
+                </div>
+                <div class="row">
+                <div class="col-md-12">
+                <b>Opp. RC4 Dover Road Bus Stop (Towards Buona Vista)</b>
+                <table class="table table-bordered table-striped table-hover">
+                        <thead>
+                          <tr>
+                            <th>Bus</th>
+                            <th>Next</th>
+                            <th>After</th>
+                        </tr>
+                    </thead>
+                    <tbody data-bind="foreach: lta_opp_bus">
+                        <tr>
+                            <td data-bind="text: no"></td>
+                            <td data-bind="text: next.time"></td>
+                            <td data-bind="text: subsequent.time"></td>
+                        </tr>
+                    </tbody>
+                </table>
+                </div>
             </div><!-- /.col -->
             <div class="col-md-2"></div>
         </div><!-- /.row -->
@@ -210,6 +236,10 @@
     });
 </script>
 <script type="text/javascript">
+var isb = null;
+var lta = null;
+var lta_opp = null;
+
   $.ajax({
     url: 'http://query.yahooapis.com/v1/public/yql',
     data: {
@@ -218,27 +248,56 @@
     },
     dataType: "jsonp",
     success: function (data) {
-        data2=data;
-        console.log(JSON.stringify(data));
-        console.log(data.query.results.json.shuttles);
-        ko.applyBindings({
-            bus: data.query.results.json.shuttles
-        });
+        isb = data.query.results.json.shuttles;
+        if(lta!=null && lta_opp!=null) {
+            ko.applyBindings({
+                bus: isb,
+                lta_bus: lta,
+                lta_opp_bus : lta_opp
+            });
+        }
         
     },
     error: function (result) {
-        alert("Sorry no data found.");
+        //alert("Sorry no data found.");
     }
 });
 
   $.ajax({
-    url: 'https://arrivelah.herokuapp.com/?id=83139',
+    url: 'https://arrivelah.herokuapp.com/?id=19059',
     dataType: "json",
     success: function (data) {
         console.log(JSON.stringify(data));
+        lta = data.services;
+        if(isb!=null && lta_opp!=null) {
+            ko.applyBindings({
+                bus: isb,
+                lta_bus: lta,
+                lta_opp_bus : lta_opp
+            });
+        }
     },
     error: function (result) {
-        alert("Sorry no data found.");
+        //alert("Sorry no data found.");
+    }
+});
+
+    $.ajax({
+    url: 'https://arrivelah.herokuapp.com/?id=19051',
+    dataType: "json",
+    success: function (data) {
+        console.log(JSON.stringify(data));
+        lta_opp = data.services;
+        if(isb!=null && lta!=null) {
+            ko.applyBindings({
+                bus: isb,
+                lta_bus: lta,
+                lta_opp_bus : lta_opp
+            });
+        }
+    },
+    error: function (result) {
+        //alert("Sorry no data found.");
     }
 });
 
