@@ -182,25 +182,25 @@ var appMaster = {
             gallery: '.popup_ig_gallery',
             
             // standard plugin properties
+            closeContent: '',
+
             markup: 
             '<div class="popup">'+
                 '<div class="popup_wrap">'+
-                   '<div class="popup_content"></div>'+
-                   '<div class="popup_extra">'+
-                        '<div class="controls clearfix">'+
-                           '<a href="popup_next"><img src="" alt="">next</a>'+
-                           '<a href="popup_prev"><img src="" alt="">prev</a>'+
-                        '</div>'+
-                        '<div class="description">'+
-                            '<ul>'+
-                                '<li>President: Abraham Lincoln</li>'+
-                                '<li>Time: 3:19 am</li>'+
-                                '<li>Location: White House</li>'+
-                                '<li>blah: Lorem ipsum dolor</li>'+
-                            '</ul>'+
-                        '</div>'+
-                   '</div>'+
+                    '<div class="popup_content"></div>'+
+                    '<div class="popup_nav">'+
+                        '<a href="popup_next"><img src="" alt="">next</a>'+
+                        '<a href="popup_prev"><img src="" alt="">prev</a>'+
+                    '</div>'+
                 '</div>'+
+                 '<div class="popup_details">'+
+                     '<ul>'+
+                         '<li>President: Abraham Lincoln</li>'+
+                         '<li>Time: 3:19 am</li>'+
+                         '<li>Location: White House</li>'+
+                         '<li>blah: Lorem ipsum dolor</li>'+
+                     '</ul>'+
+                 '</div>'+
             '</div>',
 
             replaced: function($popup, $back){
@@ -211,7 +211,7 @@ var appMaster = {
                 $wrap.animate({
                     width : $wrap.children().children().outerWidth(true),
                     height : $wrap.children('.popup_content').outerHeight(true) +
-                             $wrap.children('.popup_extra').outerHeight(true)
+                             $wrap.children('.popup_details').outerHeight(true)
                 }, {
                     duration : 500,
                     step : function(){
@@ -247,9 +247,7 @@ var appMaster = {
                 $wrap.css({
                     width  : $wrap.children().children().outerWidth(true),
                     height : $wrap.children('.popup_content').outerHeight(true) +
-                             $wrap.children('.popup_extra').outerHeight(true) + 20
-                    // hackish
-                    // does not detect clearfix height on show() so manually add 20
+                             $wrap.children('.popup_details').outerHeight(true)
                 });
 
                 // Center the plugin

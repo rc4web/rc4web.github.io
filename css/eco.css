@@ -1260,27 +1260,36 @@ form .form-control:focus {
 
 /* popup for ig */
 .popup .popup_wrap {
-  padding-bottom: 5px;
+  position: relative;
 }
-.popup .popup_extra {
-  margin: 5px;
-}
-.popup a[href='popup_next'] {
-  float: right;
-}
-.popup a[href='popup_prev'] {
-  float: left;
-}
-.popup .description {
+.popup .popup_nav {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  height: 100%;
   width: 100%;
-  padding-top: 5px;
 }
-.popup .description ul {
+.popup .popup_nav a {
+  height: 100%;
+}
+.popup .popup_nav a[href="popup_prev"] {
+  float: left;
+  width: 50%;
+}
+.popup .popup_nav a[href="popup_next"] {
+  float: right;
+  width: 50%;
+}
+.popup .popup_details {
+  padding: 10px 5px 5px 5px;
+}
+.popup .popup_details ul {
   list-style: none;
   margin: auto;
   padding: 0;
 }
-.popup .description ul li {
+.popup .popup_details ul li {
   display: block;
 }
 
