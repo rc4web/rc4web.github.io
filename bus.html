@@ -110,7 +110,7 @@
                 
                 <div class="row">
                     <div class="col-md-2"></div>
-                    <div class="col-md-4">
+                    <div class="col-md-4 bustable">
                     <b>Utown Internal Shuttle Bus Stop</b>
                         <table class="table table-bordered table-striped table-hover">
                             <thead>
@@ -131,7 +131,7 @@
                 </div><!-- /.col -->
             <div class="col-md-4">
                     <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-12 bustable">
                     <b>RC4 Dover Road Bus Stop (Towards Clementi)</b>
                     <table class="table table-bordered table-striped table-hover">
                         <thead>
@@ -152,7 +152,7 @@
                 </div>
                 </div>
                 <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-12 bustable">
                 <b>Opp. RC4 Dover Road Bus Stop (Towards Buona Vista)</b>
                 <table class="table table-bordered table-striped table-hover">
                         <thead>
@@ -228,7 +228,8 @@
 <script src="js/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
 <script src="js/waypoints.min.js"></script>
 <script src="js/scripts.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.2.0/knockout-min.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/knockout/3.2.0/knockout-min.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.3/moment.min.js"></script>
 
 <script>
     $(document).ready(function() {
@@ -269,6 +270,11 @@ var lta_opp = null;
     success: function (data) {
         console.log(JSON.stringify(data));
         lta = data.services;
+        for(var i=0; i<lta.length; i++)
+        { 
+            lta[i]["next"]["time"] = moment(lta[i]["next"]["time"]).fromNow(true);
+            lta[i]["subsequent"]["time"] = moment(lta[i]["subsequent"]["time"]).fromNow(true);
+        }
         if(isb!=null && lta_opp!=null) {
             ko.applyBindings({
                 bus: isb,
@@ -288,6 +294,11 @@ var lta_opp = null;
     success: function (data) {
         console.log(JSON.stringify(data));
         lta_opp = data.services;
+        for(var i=0; i<lta_opp.length; i++)
+        { 
+            lta_opp[i]["next"]["time"] = moment(lta_opp[i]["next"]["time"]).fromNow(true);
+            lta_opp[i]["subsequent"]["time"] = moment(lta_opp[i]["subsequent"]["time"]).fromNow(true);
+        }
         if(isb!=null && lta!=null) {
             ko.applyBindings({
                 bus: isb,
