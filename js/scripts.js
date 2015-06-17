@@ -69,6 +69,12 @@ var appMaster = {
             }]
         });
 
+        $('filtering').on('init', function(event, slick) {
+            console.log('hi');
+            console.log(event);
+            console.log(slick);
+        });
+
         $('.js-filter-all').on('click', function() {
             $('.filtering').slickUnfilter();
             $('.filter a').removeClass('active');
@@ -92,7 +98,6 @@ var appMaster = {
             $('.filter a').removeClass('active');
             $(this).addClass('active');
         });
-
     },
 
     animateScript: function() {
@@ -169,6 +174,144 @@ var appMaster = {
                 $('nav').removeClass('scrolled');
             }
         });
+    },
+
+    popUp: function() {
+        // Popup Overlay
+        var ig_settings = {
+            /*
+<<<<<<< HEAD
+                custom property 
+=======
+                custom variable 
+>>>>>>> 6891e9bffd8565cdcf9e2d1b14f8d4bb5a0295c2
+                groups associated items together 
+                for reference in next and prev links 
+            */
+            gallery: '.popup_ig_gallery',
+            scrollable: false,
+            
+            // standard plugin properties
+            closeContent: '',
+
+            markup: 
+            '<div class="popup">'+
+                '<div class="popup_wrap">'+
+                    '<div class="popup_content"></div>'+
+                    '<div class="popup_nav">'+
+                        '<a href="popup_next"></a>'+
+                        '<a href="popup_prev"></a>'+
+                    '</div>'+
+                '</div>'+
+                 '<div class="popup_details">'+
+                     '<ul>'+
+                         '<li>President: Abraham Lincoln</li>'+
+                         '<li>Time: 3:19 am</li>'+
+                         '<li>Location: White House</li>'+
+                         '<li>blah: Lorem ipsum dolor</li>'+
+                     '</ul>'+
+                 '</div>'+
+            '</div>',
+
+            replaced: function($popup, $back){
+                var plugin = this,
+                    $wrap = $('.popup_wrap', $popup);
+                
+                // Animate the popup to new size
+                $wrap.animate({
+                    width : $wrap.children().children().outerWidth(true),
+                    height : $wrap.children('.popup_content').outerHeight(true) +
+                             $wrap.children('.popup_details').outerHeight(true)
+                }, {
+                    duration : 500,
+                    step : function(){
+                        // Need to center the poup on each step
+                        $popup.css({
+                            top  : plugin.getCenter().top,
+                            left : plugin.getCenter().left
+                        });
+                    },
+                    complete : function(){
+                        // Fade in!
+                        $wrap
+                            .children()
+                            .animate({opacity : 1}, plugin.o.speed, function(){
+                                plugin.center();
+                                plugin.o.afterOpen.call(plugin);
+                            });
+                    }
+                });
+            },
+
+            show: function($popup, $back){
+                var plugin = this,
+                    $wrap = $('.popup_wrap', $popup);
+                
+                // Default fade in
+                $popup.animate({opacity : 1}, plugin.o.speed, 
+                    function(){
+                        plugin.o.afterOpen.call(plugin);
+                    });
+                
+                // Set the inline styles as we animate later
+                $wrap.css({
+                    width  : $wrap.children().children().outerWidth(true),
+                    height : $wrap.children('.popup_content').outerHeight(true) +
+                             $wrap.children('.popup_details').outerHeight(true)
+                });
+
+                // Center the plugin
+                plugin.center();
+            },
+
+            afterOpen: function() {
+                var plugin = this;
+                if (plugin.o.scrollable === false) {
+                    $('body').addClass('no-scroll');
+                }
+            },
+            afterClose: function() {
+                // resets the gallery index
+                this.currentIndex = undefined;
+    
+                $('body').removeClass('no-scroll');
+            },
+        };
+
+        // inits the popup
+        $('.popup_ig_gallery').popup(ig_settings);
+
+        // next and prev links for any items using Popup.js plugin
+        $(document).on('click', '[href="popup_next"], [href="popup_prev"]', function(e) {
+            e.preventDefault();
+            var $current = $('.popup_active'),
+                popup = $current.data('popup'),
+                $items = $(popup.o.gallery),
+                numItems = $items.length;
+
+            // Inits index when opening popup
+            if (popup.currentIndex === undefined) {
+                popup.currentIndex = $items.index($current);
+            }
+
+            // Animate the next item
+            $('.'+popup.o.contentClass)
+                .animate({opacity: 0}, 'fast', function() {
+                    var choice = $(e.target).attr('href'),
+                        newIndex = undefined;
+
+                    if (choice === 'popup_next') {newIndex = popup.currentIndex + 1}
+                    else if (choice === 'popup_prev') {newIndex = popup.currentIndex - 1}
+                    // Cycles items in gallery
+                    if      (newIndex >= numItems) { newIndex = 0; }
+                    else if (newIndex < 0)        { newIndex = numItems - 1; }
+                    popup.currentIndex = newIndex;
+
+                    // Opens the next item
+                    $current = $($items[popup.currentIndex]);
+                    popup.open($current.attr('href'), undefined, $current[0]);
+                });
+        });
     }
 
 }; // AppMaster
@@ -187,5 +330,7 @@ $(document).ready(function() {
     appMaster.revSlider();
 
     appMaster.scrollMenu();
+
+    appMaster.popUp();
 
 });
