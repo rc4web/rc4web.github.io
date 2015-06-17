@@ -1258,6 +1258,50 @@ form .form-control:focus {
   background: #339999;
 }
 
+/* popup for ig */
+.popup .popup_wrap {
+  position: relative;
+}
+.popup .popup_nav {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  height: 100%;
+  width: 100%;
+}
+.popup .popup_nav a {
+  height: 100%;
+  opacity: 0;
+}
+.popup .popup_nav a:hover {
+  opacity: 1;
+}
+.popup .popup_nav a[href="popup_prev"] {
+  float: left;
+  width: 50%;
+  background: url("../img/plugins/prev-icon.png") left center no-repeat;
+}
+.popup .popup_nav a[href="popup_next"] {
+  float: right;
+  width: 50%;
+  background: url("../img/plugins/next-icon.png") right center no-repeat;
+}
+.popup .popup_details {
+  padding: 10px 5px 5px 5px;
+}
+.popup .popup_details ul {
+  list-style: none;
+  margin: auto;
+  padding: 0;
+}
+.popup .popup_details ul li {
+  display: block;
+}
+.no-scroll {
+  overflow: hidden;
+}
+
 @media (min-width: 768px) and (max-width: 992px) {
   .navbar-header {
     float: none;

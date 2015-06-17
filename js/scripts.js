@@ -69,6 +69,12 @@ var appMaster = {
             }]
         });
 
+        $('filtering').on('init', function(event, slick) {
+            console.log('hi');
+            console.log(event);
+            console.log(slick);
+        });
+
         $('.js-filter-all').on('click', function() {
             $('.filtering').slickUnfilter();
             $('.filter a').removeClass('active');
@@ -92,7 +98,6 @@ var appMaster = {
             $('.filter a').removeClass('active');
             $(this).addClass('active');
         });
-
     },
 
     animateScript: function() {
@@ -175,20 +180,33 @@ var appMaster = {
         // Popup Overlay
         var ig_settings = {
             /*
-                custom variable 
+                custom property 
                 groups associated items together 
                 for reference in next and prev links 
             */
             gallery: '.popup_ig_gallery',
+            scrollable: false,
             
-            // standard plugin variables
+            // standard plugin properties
+            closeContent: '',
+
             markup: 
-            '<div class="popup">'                                        +
-            '    <div class="popup_wrap">'                               +
-            '        <div class="popup_content"></div>'                  +
-            '    </div>'                                                 +
-            '    <a href="popup_next"><img src="" alt="">next</a>'       +
-            '    <a href="popup_prev"><img src="" alt="">prev</a>'       +
+            '<div class="popup">'+
+                '<div class="popup_wrap">'+
+                    '<div class="popup_content"></div>'+
+                    '<div class="popup_nav">'+
+                        '<a href="popup_next"></a>'+
+                        '<a href="popup_prev"></a>'+
+                    '</div>'+
+                '</div>'+
+                 '<div class="popup_details">'+
+                     '<ul>'+
+                         '<li>President: Abraham Lincoln</li>'+
+                         '<li>Time: 3:19 am</li>'+
+                         '<li>Location: White House</li>'+
+                         '<li>blah: Lorem ipsum dolor</li>'+
+                     '</ul>'+
+                 '</div>'+
             '</div>',
 
             replaced: function($popup, $back){
@@ -198,10 +216,10 @@ var appMaster = {
                 // Animate the popup to new size
                 $wrap.animate({
                     width : $wrap.children().children().outerWidth(true),
-                    height : $wrap.children().children().outerHeight(true)
+                    height : $wrap.children('.popup_content').outerHeight(true) +
+                             $wrap.children('.popup_details').outerHeight(true)
                 }, {
                     duration : 500,
-                    // easing : 'easeOutBack',
                     step : function(){
                         // Need to center the poup on each step
                         $popup.css({
@@ -225,25 +243,34 @@ var appMaster = {
                 var plugin = this,
                     $wrap = $('.popup_wrap', $popup);
                 
-                // Center the plugin
-                plugin.center();
-                
                 // Default fade in
-                $popup
-                .animate({opacity : 1}, plugin.o.speed, function(){
-                    plugin.o.afterOpen.call(plugin);
-                });
+                $popup.animate({opacity : 1}, plugin.o.speed, 
+                    function(){
+                        plugin.o.afterOpen.call(plugin);
+                    });
                 
                 // Set the inline styles as we animate later
                 $wrap.css({
-                    width  : $wrap.outerWidth(true),
-                    height : $wrap.outerHeight(true)
+                    width  : $wrap.children().children().outerWidth(true),
+                    height : $wrap.children('.popup_content').outerHeight(true) +
+                             $wrap.children('.popup_details').outerHeight(true)
                 });
+
+                // Center the plugin
+                plugin.center();
             },
 
+            afterOpen: function() {
+                var plugin = this;
+                if (plugin.o.scrollable === false) {
+                    $('body').addClass('no-scroll');
+                }
+            },
             afterClose: function() {
                 // resets the gallery index
                 this.currentIndex = undefined;
+    
+                $('body').removeClass('no-scroll');
             },
         };
 
@@ -252,7 +279,6 @@ var appMaster = {
 
         // next and prev links for any items using Popup.js plugin
         $(document).on('click', '[href="popup_next"], [href="popup_prev"]', function(e) {
-            console.log("next prev")
             e.preventDefault();
             var $current = $('.popup_active'),
                 popup = $current.data('popup'),
@@ -272,11 +298,12 @@ var appMaster = {
 
                     if (choice === 'popup_next') {newIndex = popup.currentIndex + 1}
                     else if (choice === 'popup_prev') {newIndex = popup.currentIndex - 1}
-
+                    console.log('new index ' + newIndex);
                     // Cycles items in gallery
-                    if      (newIndex > numItems) { newIndex = 0; }
+                    if      (newIndex >= numItems) { newIndex = 0; }
                     else if (newIndex < 0)        { newIndex = numItems - 1; }
                     popup.currentIndex = newIndex;
+                    console.log('next index ' + popup.currentIndex);
 
                     // Opens the next item
                     $current = $($items[popup.currentIndex]);
@@ -290,7 +317,7 @@ var appMaster = {
 
 $(document).ready(function() {
 
-    // appMaster.smoothScroll();
+    appMaster.smoothScroll();
 
     appMaster.reviewsCarousel();
 
