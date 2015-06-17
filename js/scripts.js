@@ -69,6 +69,12 @@ var appMaster = {
             }]
         });
 
+        $('filtering').on('init', function(event, slick) {
+            console.log('hi');
+            console.log(event);
+            console.log(slick);
+        });
+
         $('.js-filter-all').on('click', function() {
             $('.filtering').slickUnfilter();
             $('.filter a').removeClass('active');
@@ -92,7 +98,6 @@ var appMaster = {
             $('.filter a').removeClass('active');
             $(this).addClass('active');
         });
-
     },
 
     animateScript: function() {
@@ -293,11 +298,12 @@ var appMaster = {
 
                     if (choice === 'popup_next') {newIndex = popup.currentIndex + 1}
                     else if (choice === 'popup_prev') {newIndex = popup.currentIndex - 1}
-
+                    console.log('new index ' + newIndex);
                     // Cycles items in gallery
-                    if      (newIndex > numItems) { newIndex = 0; }
+                    if      (newIndex >= numItems) { newIndex = 0; }
                     else if (newIndex < 0)        { newIndex = numItems - 1; }
                     popup.currentIndex = newIndex;
+                    console.log('next index ' + popup.currentIndex);
 
                     // Opens the next item
                     $current = $($items[popup.currentIndex]);
