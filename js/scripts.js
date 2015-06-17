@@ -180,7 +180,11 @@ var appMaster = {
         // Popup Overlay
         var ig_settings = {
             /*
+<<<<<<< HEAD
                 custom property 
+=======
+                custom variable 
+>>>>>>> 6891e9bffd8565cdcf9e2d1b14f8d4bb5a0295c2
                 groups associated items together 
                 for reference in next and prev links 
             */
@@ -298,12 +302,10 @@ var appMaster = {
 
                     if (choice === 'popup_next') {newIndex = popup.currentIndex + 1}
                     else if (choice === 'popup_prev') {newIndex = popup.currentIndex - 1}
-                    console.log('new index ' + newIndex);
                     // Cycles items in gallery
                     if      (newIndex >= numItems) { newIndex = 0; }
                     else if (newIndex < 0)        { newIndex = numItems - 1; }
                     popup.currentIndex = newIndex;
-                    console.log('next index ' + popup.currentIndex);
 
                     // Opens the next item
                     $current = $($items[popup.currentIndex]);
