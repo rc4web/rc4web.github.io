@@ -69,12 +69,6 @@ var appMaster = {
             }]
         });
 
-        $('filtering').on('init', function(event, slick) {
-            console.log('hi');
-            console.log(event);
-            console.log(slick);
-        });
-
         $('.js-filter-all').on('click', function() {
             $('.filtering').slickUnfilter();
             $('.filter a').removeClass('active');
