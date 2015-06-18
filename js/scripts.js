@@ -180,11 +180,7 @@ var appMaster = {
         // Popup Overlay
         var ig_settings = {
             /*
-<<<<<<< HEAD
-                custom property 
-=======
                 custom variable 
->>>>>>> 6891e9bffd8565cdcf9e2d1b14f8d4bb5a0295c2
                 groups associated items together 
                 for reference in next and prev links 
             */
