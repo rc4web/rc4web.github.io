@@ -1259,7 +1259,7 @@ form .form-control:focus {
 }
 
 /* popup for ig */
-.popup .popup_wrap {
+.popup .popup_content_wrap {
   position: relative;
 }
 .popup .popup_nav {
@@ -1297,9 +1297,6 @@ form .form-control:focus {
 }
 .popup .popup_details ul li {
   display: block;
-}
-.no-scroll {
-  overflow: hidden;
 }
 
 @media (min-width: 768px) and (max-width: 992px) {
