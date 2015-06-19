@@ -40,7 +40,7 @@ var appMaster = {
         });
     },
 
-    screensCarousel: function() {
+    screensCarousel: function() {        
         // Screens Carousel
         $('.filtering').slick({
             slidesToShow: 3,
@@ -92,6 +92,15 @@ var appMaster = {
             $('.filter a').removeClass('active');
             $(this).addClass('active');
         });
+
+        // Re-init popup whenever filter is called
+        $('.filter .button').click(function() {
+            appMaster
+                .popUp('.popup_ig_gallery', {
+                    "url": "data/ig_info.json",
+                });
+        });
+
     },
 
     animateScript: function() {
@@ -170,114 +179,159 @@ var appMaster = {
         });
     },
 
-    popUp: function() {
-        // Popup Overlay
-        var ig_settings = {
-            /*
-                custom property 
-                groups associated items together 
-                for reference in next and prev links 
-            */
-            gallery: '.popup_ig_gallery',
-            scrollable: false,
-            
-            // standard plugin properties
-            closeContent: '',
+    /*
+        gallery: string, class name
+            groups related img together
+        options object accepts
+        scrollable: boolean
+            whether main screen is scrollable when popup is open
+            defaults to false
+        url: string
+            location of jsonp data
+    */
+    popUp: function(gallery, options) {
+        options.scrollable = 
+            options.scrollable !== undefined 
+                ? options.scrollable : false;
 
-            markup: 
-            '<div class="popup">'+
-                '<div class="popup_wrap">'+
-                    '<div class="popup_content"></div>'+
-                    '<div class="popup_nav">'+
-                        '<a href="popup_next"></a>'+
-                        '<a href="popup_prev"></a>'+
-                    '</div>'+
-                '</div>'+
-                 '<div class="popup_details">'+
-                     '<ul>'+
-                         '<li>President: Abraham Lincoln</li>'+
-                         '<li>Time: 3:19 am</li>'+
-                         '<li>Location: White House</li>'+
-                         '<li>blah: Lorem ipsum dolor</li>'+
-                     '</ul>'+
-                 '</div>'+
-            '</div>',
+        // clean up any existing popup events/data to prevent duplication
+        $(document).off('.popup', gallery);
+        $(document).off('click', '[href="popup_next"], [href="popup_prev"]');
+        $(gallery).removeData('popup');            
 
-            replaced: function($popup, $back){
-                var plugin = this,
-                    $wrap = $('.popup_wrap', $popup);
-                
-                // Animate the popup to new size
-                $wrap.animate({
-                    width : $wrap.children().children().outerWidth(true),
-                    height : $wrap.children('.popup_content').outerHeight(true) +
-                             $wrap.children('.popup_details').outerHeight(true)
-                }, {
-                    duration : 500,
-                    step : function(){
-                        // Need to center the poup on each step
-                        $popup.css({
-                            top  : plugin.getCenter().top,
-                            left : plugin.getCenter().left
+        // retrieve json data for ig description
+        $.ajax({
+            url: options.url,
+            type: 'GET',
+            dataType: 'jsonp',
+            crossDomain: true,
+            jsonpCallback: "cb",
+            success: function(data) {
+
+                // Popup Overlay
+                var ig_settings = {
+                    // custom property 
+                    gallery: gallery,
+                    scrollable: options.scrollable,
+
+                    // standard plugin properties
+                    closeContent: '',
+
+                    markup: 
+                    '<div class="popup">'+
+                        '<div class="popup_content_wrap">'+
+                            '<div class="popup_content"></div>'+
+                            '<div class="popup_nav">'+
+                                '<a href="popup_next"></a>'+
+                                '<a href="popup_prev"></a>'+
+                            '</div>'+
+                        '</div>'+
+                        '<div class="popup_details">'+
+                             '<ul></ul>'+
+                         '</div>'+
+                    '</div>',
+
+                    replaced: function($popup, $back){
+
+                        // update markup with data
+                        var $details = $('.popup_details ul', $popup);
+                        var name = $('.popup_active').parent().find('.ig-name').text();
+                        var info = data[name];
+
+                        // clears text first
+                        $details.html('');
+
+                        $.each(info, function(k, v) {
+                            $details.append('<li>' + k + ': ' + v + '</li>');
+                        });
+
+
+                        var plugin = this;
+                        var $pop = $('.popup', $popup);
+                        
+                        // Animate the popup to new size
+                        $pop.animate({
+                            width : $pop.find('img').outerWidth(true),
+                            height : $pop.find('.popup_content').outerHeight(true) +
+                                     $pop.find('.popup_details').outerHeight(true)
+                        }, {
+                            duration : 50,
+                            step : function(){
+                                // Need to center the poup on each step
+                                $popup.css({
+                                    top  : plugin.getCenter().top,
+                                    left : plugin.getCenter().left
+                                });
+                            },
+                            complete : function(){
+                                // Fade in!
+                                $pop
+                                    .find('.popup_content')
+                                    .animate({opacity : 1}, plugin.o.speed, function(){
+                                        plugin.center();
+                                        plugin.o.afterOpen.call(plugin);
+                                    });
+                            }
                         });
                     },
-                    complete : function(){
-                        // Fade in!
-                        $wrap
-                            .children()
-                            .animate({opacity : 1}, plugin.o.speed, function(){
-                                plugin.center();
-                                plugin.o.afterOpen.call(plugin);
-                            });
-                    }
-                });
+
+                    show: function($popup, $back){
+                        // Update markup with data
+                        var $details = $('.popup_details ul', $popup);
+                        var name = $('.popup_active').parent().find('.ig-name').text();
+                        var info = data[name];
+
+                        $.each(info, function(k, v) {
+                            $details.append('<li>' + k + ': ' + v + '</li>');
+                        });
+                        
+                        // Styling
+                        var plugin = this;
+                        var $pop = $('.popup', $popup);
+
+                        // Default fade in
+                        $popup.
+                            animate({opacity : 1}, plugin.o.speed, 
+                                function(){
+                                    plugin.o.afterOpen.call(plugin);
+                                });
+                        
+                        // Set the inline styles as we animate later
+                        $pop.css({
+                            width  : $pop.find('img').outerWidth(true),
+                        });
+
+                        plugin.center();
+                    },
+
+                    afterOpen: function() {
+                        var plugin = this;
+                        if (plugin.o.scrollable === false) {
+                            $('body').addClass('modal-open');
+                        }
+                    },
+                    afterClose: function() {
+                        // Resets the gallery index
+                        this.currentIndex = undefined;
+                        
+                        // Enable scrolling
+                        $('body').removeClass('modal-open');
+                    },
+                };
+
+                $(gallery).popup(ig_settings);
+
             },
+        });
 
-            show: function($popup, $back){
-                var plugin = this,
-                    $wrap = $('.popup_wrap', $popup);
-                
-                // Default fade in
-                $popup.animate({opacity : 1}, plugin.o.speed, 
-                    function(){
-                        plugin.o.afterOpen.call(plugin);
-                    });
-                
-                // Set the inline styles as we animate later
-                $wrap.css({
-                    width  : $wrap.children().children().outerWidth(true),
-                    height : $wrap.children('.popup_content').outerHeight(true) +
-                             $wrap.children('.popup_details').outerHeight(true)
-                });
-
-                // Center the plugin
-                plugin.center();
-            },
-
-            afterOpen: function() {
-                var plugin = this;
-                if (plugin.o.scrollable === false) {
-                    $('body').addClass('no-scroll');
-                }
-            },
-            afterClose: function() {
-                // resets the gallery index
-                this.currentIndex = undefined;
-    
-                $('body').removeClass('no-scroll');
-            },
-        };
-
-        // inits the popup
-        $('.popup_ig_gallery').popup(ig_settings);
-
-        // next and prev links for any items using Popup.js plugin
+        // Next and prev links for any items using Popup.js plugin
         $(document).on('click', '[href="popup_next"], [href="popup_prev"]', function(e) {
             e.preventDefault();
-            var $current = $('.popup_active'),
-                popup = $current.data('popup'),
-                $items = $(popup.o.gallery),
-                numItems = $items.length;
+
+            var $current = $('.popup_active');
+            var popup = $current.data('popup');
+            var $items = $(popup.o.gallery);
+            var numItems = $items.length;
 
             // Inits index when opening popup
             if (popup.currentIndex === undefined) {
@@ -287,17 +341,16 @@ var appMaster = {
             // Animate the next item
             $('.'+popup.o.contentClass)
                 .animate({opacity: 0}, 'fast', function() {
-                    var choice = $(e.target).attr('href'),
-                        newIndex = undefined;
+                    var choice = $(e.target).attr('href');
+                    var newIndex = undefined;
 
                     if (choice === 'popup_next') {newIndex = popup.currentIndex + 1}
                     else if (choice === 'popup_prev') {newIndex = popup.currentIndex - 1}
-                    console.log('new index ' + newIndex);
+
                     // Cycles items in gallery
                     if      (newIndex >= numItems) { newIndex = 0; }
                     else if (newIndex < 0)        { newIndex = numItems - 1; }
                     popup.currentIndex = newIndex;
-                    console.log('next index ' + popup.currentIndex);
 
                     // Opens the next item
                     $current = $($items[popup.currentIndex]);
@@ -323,6 +376,9 @@ $(document).ready(function() {
 
     appMaster.scrollMenu();
 
-    appMaster.popUp();
+    appMaster
+        .popUp('.popup_ig_gallery', {
+            "url": "data/ig_info.json",
+        });
 
 });
