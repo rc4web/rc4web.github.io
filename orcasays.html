@@ -184,8 +184,7 @@
             appMaster.preLoader();
         });
     </script>
-    <script type="text/javascript" src="//orcasays.tumblr.com/api/read/json"></script>
-    <script>
+    <script type="text/javascript">
         function timeConverter(UNIX_timestamp){
           var a = new Date(UNIX_timestamp*1000);
           var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
@@ -198,17 +197,18 @@
           time[0] = date + ' ' + month + ' ' + year;
           time[1] = hour + ':' + min;
           return time;
-        }
-        for(i = 0; i < 10; i++)
+      }
+      function loadTumblr(tumblr_api_read) {
+        tumblr_api_read = tumblr_api_read.response;
+        for(i = 0; i < tumblr_api_read.total_posts; i++)
         {
             var content = document.querySelector('template').content;
             var title = content.querySelector('.timeline-header');
-            title.textContent = tumblr_api_read.posts[i]['regular-title'];
+            title.textContent = tumblr_api_read.posts[i]['title'];
             var body = content.querySelector('.timeline-body');
-            body.innerHTML = tumblr_api_read.posts[i]['regular-body'];
+            body.innerHTML = tumblr_api_read.posts[i]['body'];
 
-            //var time = timeConverter(0);
-            var time = timeConverter(tumblr_api_read.posts[i]['unix-timestamp']);
+            var time = timeConverter(tumblr_api_read.posts[i]['timestamp']);
             var timeText = content.querySelector('.timeText');
             timeText.textContent = time[1];
             var dateText = content.querySelector('.date');
@@ -217,6 +217,9 @@
             document.querySelector('.timeline').insertBefore(
                 document.importNode(content, true),document.querySelector('.contentBeforeThis'));
         }
+    }
+    </script>
+    <script type="text/javascript" src="https://api.tumblr.com/v2/blog/orcasays.tumblr.com/posts?callback=loadTumblr">
     </script>
 </body>
 
