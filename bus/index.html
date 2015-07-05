@@ -120,13 +120,7 @@
                                 <th>After</th>
                             </tr>
                         </thead>
-                        <tbody data-bind="foreach: bus">
-                            <tr>
-                                <td data-bind="text: name"></td>
-                                <td data-bind="text: arrivalTime"></td>
-                                <td data-bind="text: nextArrivalTime"></td>
-                            </tr>
-                        </tbody>
+                        <tbody class="isbTable"></tbody>
                     </table>
                 </div><!-- /.col -->
             <div class="col-md-4">
@@ -141,13 +135,7 @@
                             <th>After</th>
                         </tr>
                     </thead>
-                    <tbody data-bind="foreach: lta_bus">
-                        <tr>
-                            <td data-bind="text: no"></td>
-                            <td data-bind="text: next.time"></td>
-                            <td data-bind="text: subsequent.time"></td>
-                        </tr>
-                    </tbody>
+                    <tbody class="doverRdClementi"></tbody>
                 </table>
                 </div>
                 </div>
@@ -162,13 +150,7 @@
                             <th>After</th>
                         </tr>
                     </thead>
-                    <tbody data-bind="foreach: lta_opp_bus">
-                        <tr>
-                            <td data-bind="text: no"></td>
-                            <td data-bind="text: next.time"></td>
-                            <td data-bind="text: subsequent.time"></td>
-                        </tr>
-                    </tbody>
+                    <tbody class="doverRdBouna"></tbody>
                 </table>
                 </div>
             </div><!-- /.col -->
@@ -198,37 +180,20 @@
 </div>
 
 <template>
-    <!-- timeline time label -->
-    <li class="time-label scrollpoint sp-effect1">
-      <span class="bg-teal date">
-        10 Feb. 2014
-    </span>
-</li>
-<!-- /.timeline-label -->
-<!-- timeline item -->
-<li>
-  <i class="fa fa-file-text bg-teal scrollpoint sp-effect1"></i>
-  <div class="timeline-item scrollpoint sp-effect2">
-    <span class="time"><i class="fa fa-clock-o"></i> <i class="timeText">12:05</i></span>
-    <h3 class="timeline-header">Title</h3>
-    <div class="timeline-body">
-      Text
-  </div>
-  <div class='timeline-footer'></div>
-</div>
-</li>
-<!-- END timeline item -->
+    <tr>
+        <td class="busNo"></td>
+        <td class="nextTime"></td>
+        <td class="afterTime"></td>
+    </tr>
 </template>
 
 <script src="../js/jquery-1.11.1.min.js"></script>
 <script src="../js/bootstrap.min.js"></script>
 <script src="../js/slick.min.js"></script>
-<script src="../js/placeholdem.min.js"></script>
 <script src="../js/rs-plugin/js/jquery.themepunch.plugins.min.js"></script>
 <script src="../js/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
 <script src="../js/waypoints.min.js"></script>
 <script src="../js/scripts_basic.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/knockout/3.2.0/knockout-min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.3/moment.min.js"></script>
 
 <script>
@@ -237,30 +202,47 @@
     });
 </script>
 <script type="text/javascript">
-var isb = null;
-var lta = null;
-var lta_opp = null;
 
-  $.ajax({
-    url: '//query.yahooapis.com/v1/public/yql',
-    data: {
-        q: "select * from json where url ='https://myaces.nus.edu.sg/prjbus/services/shuttlebus/UTOWN'",
-        format: "json"
+moment.locale('en', {
+    relativeTime : {
+        future: "in %s",
+        s:  "Arr",
+        m:  "1 min",
+        mm: "%d mins"
     },
-    dataType: "jsonp",
+    invalidDate: "-"
+});
+
+
+function getBusTiming(){
+  $.ajax({
+    url: 'http://cors.io/?u=https://myaces.nus.edu.sg/prjbus/services/shuttlebus/UTOWN',
+    dataType: "json",
     success: function (data) {
-        isb = data.query.results.json.shuttles;
-        if(lta!=null && lta_opp!=null) {
-            ko.applyBindings({
-                bus: isb,
-                lta_bus: lta,
-                lta_opp_bus : lta_opp
-            });
+        isb = data.shuttles;
+        for(var i=0; i<isb.length; i++) {
+            var content = document.querySelector('template').content;
+            var busNo = content.querySelector('.busNo');
+            var nextTime = content.querySelector('.nextTime');
+            var afterTime = content.querySelector('.afterTime');
+
+            busNo.textContent = isb[i].name;
+
+            //Next
+            if(isb[i].arrivalTime != "Arr" && isb[i].arrivalTime != "-")
+                nextTime.textContent = isb[i].arrivalTime + " mins";
+            else
+                nextTime.textContent = isb[i].arrivalTime;
+            //After
+            if(isb[i].nextArrivalTime != "Arr" && isb[i].nextArrivalTime != "-")
+                afterTime.textContent = isb[i].nextArrivalTime + " mins";
+            else
+                afterTime.textContent = isb[i].nextArrivalTime;
+
+            $('.isbTable').append(
+                document.importNode(content, true),document.querySelector('.contentBeforeThis'));
         }
         
-    },
-    error: function (result) {
-        //alert("Sorry no data found.");
     }
 });
 
@@ -268,23 +250,23 @@ var lta_opp = null;
     url: 'https://arrivelah.herokuapp.com/?id=19059',
     dataType: "json",
     success: function (data) {
-        console.log(JSON.stringify(data));
+        //console.log(JSON.stringify(data));
         lta = data.services;
         for(var i=0; i<lta.length; i++)
         { 
-            lta[i]["next"]["time"] = moment(lta[i]["next"]["time"]).fromNow(true);
-            lta[i]["subsequent"]["time"] = moment(lta[i]["subsequent"]["time"]).fromNow(true);
+            var content = document.querySelector('template').content;
+            var busNo = content.querySelector('.busNo');
+            var nextTime = content.querySelector('.nextTime');
+            var afterTime = content.querySelector('.afterTime');
+
+            busNo.textContent = lta[i].no;
+
+            nextTime.textContent = moment(lta[i]["next"]["time"]).fromNow(true);
+            afterTime.textContent = moment(lta[i]["subsequent"]["time"]).fromNow(true);
+
+            $('.doverRdClementi').append(
+                document.importNode(content, true),document.querySelector('.contentBeforeThis'));
         }
-        if(isb!=null && lta_opp!=null) {
-            ko.applyBindings({
-                bus: isb,
-                lta_bus: lta,
-                lta_opp_bus : lta_opp
-            });
-        }
-    },
-    error: function (result) {
-        //alert("Sorry no data found.");
     }
 });
 
@@ -292,26 +274,28 @@ var lta_opp = null;
     url: 'https://arrivelah.herokuapp.com/?id=19051',
     dataType: "json",
     success: function (data) {
-        console.log(JSON.stringify(data));
-        lta_opp = data.services;
-        for(var i=0; i<lta_opp.length; i++)
+        //console.log(JSON.stringify(data));
+        lta = data.services;
+        for(var i=0; i<lta.length; i++)
         { 
-            lta_opp[i]["next"]["time"] = moment(lta_opp[i]["next"]["time"]).fromNow(true);
-            lta_opp[i]["subsequent"]["time"] = moment(lta_opp[i]["subsequent"]["time"]).fromNow(true);
+            var content = document.querySelector('template').content;
+            var busNo = content.querySelector('.busNo');
+            var nextTime = content.querySelector('.nextTime');
+            var afterTime = content.querySelector('.afterTime');
+
+            busNo.textContent = lta[i].no;
+
+            nextTime.textContent = moment(lta[i]["next"]["time"]).fromNow(true);
+            afterTime.textContent = moment(lta[i]["subsequent"]["time"]).fromNow(true);
+
+            $('.doverRdBouna').append(
+                document.importNode(content, true),document.querySelector('.contentBeforeThis'));
         }
-        if(isb!=null && lta!=null) {
-            ko.applyBindings({
-                bus: isb,
-                lta_bus: lta,
-                lta_opp_bus : lta_opp
-            });
-        }
-    },
-    error: function (result) {
-        //alert("Sorry no data found.");
+        
     }
 });
-
+}
+getBusTiming();
 </script>
 
 
