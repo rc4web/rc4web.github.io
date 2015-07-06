@@ -63,19 +63,19 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="index_.html#about">about</a>
+                    <li><a href="../index_.html#about">about</a>
                     </li>
-                    <li><a href="index_.html#houses">Houses</a>
+                    <li><a href="../index_.html#houses">Houses</a>
                     </li>
-                    <li><a href="index_.html#interest">Interest</a>
+                    <li><a href="../index_.html#interest">Interest</a>
                     </li>
-                    <li><a href="index_.html#photos">Media</a>
+                    <li><a href="../index_.html#photos">Media</a>
                     </li>
-                    <li><a href="orcasays.html">Orca Says</a>
+                    <li><a href="../orcasays.html">Orca Says</a>
                     </li>
                     <li><a class="joinUs" href="http://rc4.nus.edu.sg" target="_blank">Offical Website</a>
                     </li>
-                    <li><a href="index_.html#support">Contact</a>
+                    <li><a href="../index_.html#support">Contact</a>
                     </li>
                 </ul>
             </div>
@@ -120,7 +120,11 @@
                                 <th>After</th>
                             </tr>
                         </thead>
-                        <tbody class="isbTable"></tbody>
+                        <tbody class="isbTable">
+                            <tr id="isbLoading" class ="busLoadingRow">
+                                <td colspan ="3"><i class="fa fa-refresh fa-spin"></i> Refreshing...</td>
+                            </tr>
+                        </tbody>
                     </table>
                 </div><!-- /.col -->
             <div class="col-md-4">
@@ -135,7 +139,11 @@
                             <th>After</th>
                         </tr>
                     </thead>
-                    <tbody class="doverRdClementi"></tbody>
+                    <tbody class="doverRdClementi">
+                        <tr id="doverClementiLoading" class ="busLoadingRow">
+                                <td colspan ="3"><i class="fa fa-refresh fa-spin"></i> Refreshing...</td>
+                        </tr>
+                    </tbody>
                 </table>
                 </div>
                 </div>
@@ -150,7 +158,11 @@
                             <th>After</th>
                         </tr>
                     </thead>
-                    <tbody class="doverRdBouna"></tbody>
+                    <tbody class="doverRdBouna">
+                        <tr id="doverBounaLoading" class ="busLoadingRow">
+                                <td colspan ="3"><i class="fa fa-refresh fa-spin"></i> Refreshing...</td>
+                        </tr>
+                    </tbody>
                 </table>
                 </div>
             </div><!-- /.col -->
@@ -241,6 +253,7 @@ function getBusTiming(){
 
             $('.isbTable').append(
                 document.importNode(content, true),document.querySelector('.contentBeforeThis'));
+            $('#isbLoading').hide();
         }
         
     }
@@ -266,6 +279,7 @@ function getBusTiming(){
 
             $('.doverRdClementi').append(
                 document.importNode(content, true),document.querySelector('.contentBeforeThis'));
+            $('#doverClementiLoading').hide();
         }
     }
 });
@@ -290,6 +304,7 @@ function getBusTiming(){
 
             $('.doverRdBouna').append(
                 document.importNode(content, true),document.querySelector('.contentBeforeThis'));
+            $('#doverBounaLoading').hide();
         }
         
     }
