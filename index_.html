@@ -81,7 +81,7 @@
                             </li>
                             <li><a href="#photos">Media</a>
                             </li>
-                            <li><a href="orcasays.html">Orca Says</a>
+                            <li><a href="/orcasays">Orca Says</a>
                             </li>
                             <li><a class="joinUs" href="http://rc4.nus.edu.sg" target="_blank">Offical Website</a>
                             </li>
@@ -245,7 +245,7 @@
                 <div class="row">
                     <div class="col-md-5">
                         <div class="about-item about-img scrollpoint sp-effect1">
-                            <img src="https://www.yale-nus.edu.sg/wp-content/uploads/2011/04/GW2A9788-copy-1024x682.jpg">
+                            <img src="http://rc4.nus.edu.sg/banner/7.jpg">
                         </div>
                     </div>
                     <div class="col-md-7" >
@@ -290,7 +290,7 @@
                 <div class="section-heading scrollpoint sp-effect3">
                     <h1>Our Houses</h1>
                     <div class="divider"></div>
-                    <p>All students in RC4 will be assigned to a house. Each house will be headed by a Residential Fellow and a team of student leaders. Regular house-level activities will be organized to encourage bonding and cultivate a sense of house identity. <br> RC4 has five houses and they are named after constellations. More details will be released soon. </p>
+                    <p>All students in RC4 will be assigned to a house. Each house will be headed by a Residential Fellow and a team of student leaders. Regular house-level activities will be organized to encourage bonding and cultivate a sense of house identity. <br> <br>RC4 has five houses and they are named after constellations. More details will be released soon. </p>
                 </div>
             </div>
         </section>
@@ -311,68 +311,56 @@
                 </div>
                 <div class="slider filtering scrollpoint sp-effect5" >
                     <div class="two">
-                        <a href="img/ig_jam.jpg" class="popup_ig_gallery">
-                            <img src="img/ig_jam.jpg" alt="">
-                        </a>
+                            <img src="img/ig_jam.jpg" class="igJam">
                         <h4 class="ig-name">PB & Jam</h4>
                     </div>
                     <div class="one">
-                        <a href="img/ig_write.jpg" class="popup_ig_gallery">
-                            <img src="img/ig_write.jpg" alt="">
-                        </a>
+                            <img src="img/ig_write.jpg" class="igOrcasays">
                         <h4 class="ig-name">Orca Says</h4>
                     </div>
                     <div class="one">
-                        <a href="img/ig_bake.jpg" class="popup_ig_gallery">
-                            <img src="img/ig_bake.jpg" alt="">
-                        </a>
+                            <img src="img/ig_bake.jpg" class="igBaking">
                         <h4 class="ig-name">Baking Club</h4>
                     </div>
                     <div class="three">
-                        <a href="img/ig_sports.jpg" class="popup_ig_gallery">
-                            <img src="img/ig_sports.jpg" alt="">
-                        </a>
+                            <img src="img/ig_sports.jpg" class="igShake">
                         <h4 class="ig-name">Shake It Off</h4>
                     </div>
                     <div class="two">
-                        <a href="img/ig_theatre.jpg" class="popup_ig_gallery">
-                            <img src="img/ig_theatre.jpg" alt="">
-                        </a>
+                            <img src="img/ig_theatre.jpg" class="igTheatre">
                         <h4 class="ig-name">Theatre Club</h4>
                     </div>
                 </div>
             </div>
             <!-- Modal -->
+              <div class="modal fade" id="myModal" role="dialog">
+                <div class="modal-dialog">
 
-              <button type="button" class="btn btn-default btn-lg" id="myBtn">IG Name</button>
-  <div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog">
-
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4><span class="glyphicon glyphicon-lock"></span> IG Name</h4>
-        </div>
-        <div class="modal-body">
-            <div class="row">
-            <div class="col-md-6">
-                <div class ="wrapper">
-                <div class="about-item about-img sp-effect1">
-                    <img src="http://rc4.nus.edu.sg/banner/8.jpg">
-                </div></div>
-            </div>
-            <div class="col-md-6">
-                <p>Amazing IG is amazing! <br><br></p>
-            </div>
-        </div>
-        </div>
-        <div class="modal-footer">
-          <button type="submit" class="btn btn-default btn-default pull-right" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span>Close</button>
-        </div>
-      </div>
-    </div>
-  </div> 
+                  <!-- Modal content-->
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                      <h4><span class="glyphicon glyphicon-lock"></span> <div id="igDetailsName"> IG Name</div></h4>
+                  </div>
+                  <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class ="wrapper">
+                                <div class="about-item about-img sp-effect1">
+                                    <img id="igDetailsImage" src="http://rc4.nus.edu.sg/banner/8.jpg">
+                                </div></div>
+                            </div>
+                            <div class="col-md-6">
+                                <p id="igDetailsText">Amazing IG is amazing! <br><br></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="submit" class="btn btn-default btn-default pull-right" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span>Close</button>
+                  </div>
+              </div>
+          </div>
+      </div> 
         </section>
 
         <section id="reviews">
@@ -635,7 +623,34 @@
             appMaster.preLoader();
             //Quick Fix for mobile cannot scroll
             $('.tp-banner').attr("style", "height: 100%; max-height: none;");
-             $("#myBtn").click(function(){
+            $(".igJam").click(function(){
+                $("#igDetailsName").text("PB & Jam");
+                $("#igDetailsImage").attr("src","img/ig_jam.jpg");
+                $("#igDetailsText").text("HELLOO");
+                $("#myModal").modal();
+            });
+            $(".igOrcasays").click(function(){
+                $("#igDetailsName").text("Orca Says");
+                $("#igDetailsImage").attr("src","img/ig_write.jpg");
+                $("#igDetailsText").text("Orca Says is a student-run multimedia publication by NUS Residential College 4. From coverage of the fast lives of residents to stimulating think pieces by residents, Orca Says is by the residents, for the residents (and everyone else).");
+                $("#myModal").modal();
+            });
+            $(".igBaking").click(function(){
+                $("#igDetailsName").text("Baking Club");
+                $("#igDetailsImage").attr("src","img/ig_bake.jpg");
+                $("#igDetailsText").text("Do you like muffins, cookies or just love to eat? Join baking club to learn and hone your baking skills. Savour your finished product with your friends and neighbours!");
+                $("#myModal").modal();
+            });
+            $(".igShake").click(function(){
+                $("#igDetailsName").text("Shake It Off");
+                $("#igDetailsImage").attr("src","img/ig_sports.jpg");
+                $("#igDetailsText").text("Whether you're new to exercise or a fitness veteran, workouts are hard work. Make hard work fun together with other residents. Work out that muscle you never knew you had.");
+                $("#myModal").modal();
+            });
+            $(".igTheatre").click(function(){
+                $("#igDetailsName").text("Theatre Club");
+                $("#igDetailsImage").attr("src","img/ig_theatre.jpg");
+                $("#igDetailsText").text("Theatre a collaborative form of fine art. Express yourself through stage play and screen play. Seek out like minded residents to perform a play on your very own stage!");
                 $("#myModal").modal();
             });
         });
