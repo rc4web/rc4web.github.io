@@ -73,32 +73,28 @@ var appMaster = {
             $('.filtering').slickUnfilter();
             $('.filter a').removeClass('active');
             $(this).addClass('active');
+            appMaster.igLinkModals();
         });
 
         $('.js-filter-one').on('click', function() {
             $('.filtering').slickFilter('.one');
             $('.filter a').removeClass('active');
             $(this).addClass('active');
+            appMaster.igLinkModals();
         });
 
         $('.js-filter-two').on('click', function() {
             $('.filtering').slickFilter('.two');
             $('.filter a').removeClass('active');
             $(this).addClass('active');
+            appMaster.igLinkModals();
         });
 
         $('.js-filter-three').on('click', function() {
             $('.filtering').slickFilter('.three');
             $('.filter a').removeClass('active');
             $(this).addClass('active');
-        });
-
-        // Re-init popup whenever filter is called
-        $('.filter .button').click(function() {
-            appMaster
-                .popUp('.popup_ig_gallery', {
-                    "url": "data/ig_info.json",
-                });
+            appMaster.igLinkModals();
         });
 
     },
@@ -179,184 +175,39 @@ var appMaster = {
         });
     },
 
-    /*
-        gallery: string, class name
-            groups related img together
-        options object accepts
-        scrollable: boolean
-            whether main screen is scrollable when popup is open
-            defaults to false
-        url: string
-            location of jsonp data
-    */
-    popUp: function(gallery, options) {
-        options.scrollable = 
-            options.scrollable !== undefined 
-                ? options.scrollable : false;
 
-        // clean up any existing popup events/data to prevent duplication
-        $(document).off('.popup', gallery);
-        $(document).off('click', '[href="popup_next"], [href="popup_prev"]');
-        $(gallery).removeData('popup');            
-
-        // retrieve json data for ig description
-        $.ajax({
-            url: options.url,
-            type: 'GET',
-            dataType: 'jsonp',
-            crossDomain: true,
-            jsonpCallback: "cb",
-            success: function(data) {
-
-                // Popup Overlay
-                var ig_settings = {
-                    // custom property 
-                    gallery: gallery,
-                    scrollable: options.scrollable,
-
-                    // standard plugin properties
-                    closeContent: '',
-
-                    markup: 
-                    '<div class="popup">'+
-                        '<div class="popup_content_wrap">'+
-                            '<div class="popup_content"></div>'+
-                            '<div class="popup_nav">'+
-                                '<a href="popup_next"></a>'+
-                                '<a href="popup_prev"></a>'+
-                            '</div>'+
-                        '</div>'+
-                        '<div class="popup_details">'+
-                             '<ul></ul>'+
-                         '</div>'+
-                    '</div>',
-
-                    replaced: function($popup, $back){
-
-                        // update markup with data
-                        var $details = $('.popup_details ul', $popup);
-                        var name = $('.popup_active').parent().find('.ig-name').text();
-                        var info = data[name];
-
-                        // clears text first
-                        $details.html('');
-
-                        $.each(info, function(k, v) {
-                            $details.append('<li>' + k + ': ' + v + '</li>');
-                        });
-
-
-                        var plugin = this;
-                        var $pop = $('.popup', $popup);
-                        
-                        // Animate the popup to new size
-                        $pop.animate({
-                            width : $pop.find('img').outerWidth(true),
-                            height : $pop.find('.popup_content').outerHeight(true) +
-                                     $pop.find('.popup_details').outerHeight(true)
-                        }, {
-                            duration : 50,
-                            step : function(){
-                                // Need to center the poup on each step
-                                $popup.css({
-                                    top  : plugin.getCenter().top,
-                                    left : plugin.getCenter().left
-                                });
-                            },
-                            complete : function(){
-                                // Fade in!
-                                $pop
-                                    .find('.popup_content')
-                                    .animate({opacity : 1}, plugin.o.speed, function(){
-                                        plugin.center();
-                                        plugin.o.afterOpen.call(plugin);
-                                    });
-                            }
-                        });
-                    },
-
-                    show: function($popup, $back){
-                        // Update markup with data
-                        var $details = $('.popup_details ul', $popup);
-                        var name = $('.popup_active').parent().find('.ig-name').text();
-                        var info = data[name];
-
-                        $.each(info, function(k, v) {
-                            $details.append('<li>' + k + ': ' + v + '</li>');
-                        });
-                        
-                        // Styling
-                        var plugin = this;
-                        var $pop = $('.popup', $popup);
-
-                        // Default fade in
-                        $popup.
-                            animate({opacity : 1}, plugin.o.speed, 
-                                function(){
-                                    plugin.o.afterOpen.call(plugin);
-                                });
-                        
-                        // Set the inline styles as we animate later
-                        $pop.css({
-                            width  : $pop.find('img').outerWidth(true),
-                        });
-
-                        plugin.center();
-                    },
-
-                    afterOpen: function() {
-                        var plugin = this;
-                        if (plugin.o.scrollable === false) {
-                            $('body').addClass('modal-open');
-                        }
-                    },
-                    afterClose: function() {
-                        // Resets the gallery index
-                        this.currentIndex = undefined;
-                        
-                        // Enable scrolling
-                        $('body').removeClass('modal-open');
-                    },
-                };
-
-                $(gallery).popup(ig_settings);
-
-            },
-        });
-
-        // Next and prev links for any items using Popup.js plugin
-        $(document).on('click', '[href="popup_next"], [href="popup_prev"]', function(e) {
-            e.preventDefault();
-
-            var $current = $('.popup_active');
-            var popup = $current.data('popup');
-            var $items = $(popup.o.gallery);
-            var numItems = $items.length;
-
-            // Inits index when opening popup
-            if (popup.currentIndex === undefined) {
-                popup.currentIndex = $items.index($current);
-            }
-
-            // Animate the next item
-            $('.'+popup.o.contentClass)
-                .animate({opacity: 0}, 'fast', function() {
-                    var choice = $(e.target).attr('href');
-                    var newIndex = undefined;
-
-                    if (choice === 'popup_next') {newIndex = popup.currentIndex + 1}
-                    else if (choice === 'popup_prev') {newIndex = popup.currentIndex - 1}
-
-                    // Cycles items in gallery
-                    if      (newIndex >= numItems) { newIndex = 0; }
-                    else if (newIndex < 0)        { newIndex = numItems - 1; }
-                    popup.currentIndex = newIndex;
-
-                    // Opens the next item
-                    $current = $($items[popup.currentIndex]);
-                    popup.open($current.attr('href'), undefined, $current[0]);
-                });
-        });
+    igLinkModals: function() {
+        $(".igJam").click(function(){
+                $("#igDetailsName").text("PB & Jam");
+                $("#igDetailsImage").attr("src","img/ig_jam.jpg");
+                $("#igDetailsText").text("HELLOO");
+                $("#myModal").modal();
+            });
+            $(".igOrcasays").click(function(){
+                $("#igDetailsName").text("Orca Says");
+                $("#igDetailsImage").attr("src","img/ig_write.jpg");
+                $("#igDetailsText").text("Orca Says is a student-run multimedia publication by NUS Residential College 4. From coverage of the fast lives of residents to stimulating think pieces by residents, Orca Says is by the residents, for the residents (and everyone else).");
+                $("#myModal").modal();
+            });
+            $(".igBaking").click(function(){
+                $("#igDetailsName").text("Baking Club");
+                $("#igDetailsImage").attr("src","img/ig_bake.jpg");
+                $("#igDetailsText").text("Do you like muffins, cookies or just love to eat? Join baking club to learn and hone your baking skills. Savour your finished product with your friends and neighbours!");
+                $("#myModal").modal();
+            });
+            $(".igShake").click(function(){
+                $("#igDetailsName").text("Shake It Off");
+                $("#igDetailsImage").attr("src","img/ig_sports.jpg");
+                $("#igDetailsText").text("Whether you're new to exercise or a fitness veteran, workouts are hard work. Make hard work fun together with other residents. Work out that muscle you never knew you had.");
+                $("#myModal").modal();
+            });
+            $(".igTheatre").click(function(){
+                $("#igDetailsName").text("Theatre Club");
+                $("#igDetailsImage").attr("src","img/ig_theatre.jpg");
+                $("#igDetailsText").text("Theatre a collaborative form of fine art. Express yourself through stage play and screen play. Seek out like minded residents to perform a play on your very own stage!");
+                $("#myModal").modal();
+            });
+        
     }
 
 }; // AppMaster
@@ -376,9 +227,6 @@ $(document).ready(function() {
 
     appMaster.scrollMenu();
 
-    appMaster
-        .popUp('.popup_ig_gallery', {
-            "url": "data/ig_info.json",
-        });
+    appMaster.igLinkModals();
 
 });

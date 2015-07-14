@@ -311,23 +311,23 @@
                 </div>
                 <div class="slider filtering scrollpoint sp-effect5" >
                     <div class="two">
-                            <img src="img/ig_jam.jpg" class="igJam">
+                            <img src="img/ig_jam.jpg" class="igJam clickabe">
                         <h4 class="ig-name">PB & Jam</h4>
                     </div>
                     <div class="one">
-                            <img src="img/ig_write.jpg" class="igOrcasays">
+                            <img src="img/ig_write.jpg" class="igOrcasays clickabe">
                         <h4 class="ig-name">Orca Says</h4>
                     </div>
                     <div class="one">
-                            <img src="img/ig_bake.jpg" class="igBaking">
+                            <img src="img/ig_bake.jpg" class="igBaking clickabe">
                         <h4 class="ig-name">Baking Club</h4>
                     </div>
                     <div class="three">
-                            <img src="img/ig_sports.jpg" class="igShake">
+                            <img src="img/ig_sports.jpg" class="igShake clickabe">
                         <h4 class="ig-name">Shake It Off</h4>
                     </div>
                     <div class="two">
-                            <img src="img/ig_theatre.jpg" class="igTheatre">
+                            <img src="img/ig_theatre.jpg" class="igTheatre clickabe">
                         <h4 class="ig-name">Theatre Club</h4>
                     </div>
                 </div>
@@ -617,49 +617,17 @@
     <script src="js/rs-plugin/js/jquery.themepunch.plugins.min.js"></script>
     <script src="js/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
     <script src="js/waypoints.min.js"></script>
+    <script type="text/javascript" src="js/jquery.fb.albumbrowser.js"></script>
     <script src="js/scripts.js"></script>
     <script>
         $(document).ready(function() {
             appMaster.preLoader();
             //Quick Fix for mobile cannot scroll
             $('.tp-banner').attr("style", "height: 100%; max-height: none;");
-            $(".igJam").click(function(){
-                $("#igDetailsName").text("PB & Jam");
-                $("#igDetailsImage").attr("src","img/ig_jam.jpg");
-                $("#igDetailsText").text("HELLOO");
-                $("#myModal").modal();
-            });
-            $(".igOrcasays").click(function(){
-                $("#igDetailsName").text("Orca Says");
-                $("#igDetailsImage").attr("src","img/ig_write.jpg");
-                $("#igDetailsText").text("Orca Says is a student-run multimedia publication by NUS Residential College 4. From coverage of the fast lives of residents to stimulating think pieces by residents, Orca Says is by the residents, for the residents (and everyone else).");
-                $("#myModal").modal();
-            });
-            $(".igBaking").click(function(){
-                $("#igDetailsName").text("Baking Club");
-                $("#igDetailsImage").attr("src","img/ig_bake.jpg");
-                $("#igDetailsText").text("Do you like muffins, cookies or just love to eat? Join baking club to learn and hone your baking skills. Savour your finished product with your friends and neighbours!");
-                $("#myModal").modal();
-            });
-            $(".igShake").click(function(){
-                $("#igDetailsName").text("Shake It Off");
-                $("#igDetailsImage").attr("src","img/ig_sports.jpg");
-                $("#igDetailsText").text("Whether you're new to exercise or a fitness veteran, workouts are hard work. Make hard work fun together with other residents. Work out that muscle you never knew you had.");
-                $("#myModal").modal();
-            });
-            $(".igTheatre").click(function(){
-                $("#igDetailsName").text("Theatre Club");
-                $("#igDetailsImage").attr("src","img/ig_theatre.jpg");
-                $("#igDetailsText").text("Theatre a collaborative form of fine art. Express yourself through stage play and screen play. Seek out like minded residents to perform a play on your very own stage!");
-                $("#myModal").modal();
-            });
+
         });
     </script>
-
-    <script type="text/javascript" src="js/jquery.fb.albumbrowser.js"></script>
     <script type="text/javascript" src="js/fbalbum.js"></script>
-    <!-- <script type="text/javascript" src="js/jquery.popup.min.js"></script> -->
-    <script type="text/javascript" src="js/jquery.popup.js"></script>
 </body>
 
 </html>

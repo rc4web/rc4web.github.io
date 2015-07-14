@@ -906,6 +906,10 @@ section#about .section-heading {
   display: block;
   width: 100%;
 }
+
+.clickabe {
+  cursor: pointer;
+}
 section#about .about-item i.fa {
   border: 2px solid #66cc99;
   color: #66cc99;
