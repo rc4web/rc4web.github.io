@@ -11,19 +11,19 @@
     <title>Residential College 4 | Orca Says</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <link rel="shortcut icon" href="favicon.png">
+    <link rel="shortcut icon" href="../favicon.png">
 
-    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="../css/bootstrap.css">
     
-    <link rel="stylesheet" href="css/animate.css">
-    <link rel="stylesheet" href="css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/slick.css">
-    <link rel="stylesheet" href="js/rs-plugin/css/settings.css">
+    <link rel="stylesheet" href="../css/animate.css">
+    <link rel="stylesheet" href="../css/font-awesome.min.css">
+    <link rel="stylesheet" href="../css/slick.css">
+    <link rel="stylesheet" href="../js/rs-plugin/css/settings.css">
 
-    <script type="text/javascript" src="js/modernizr.custom.32033.js"></script>
+    <script type="text/javascript" src="../js/modernizr.custom.32033.js"></script>
     
-    <link rel="stylesheet" href="css/eco.css">
-    <link rel="stylesheet" href="css/timeline.css">
+    <link rel="stylesheet" href="../css/eco.css">
+    <link rel="stylesheet" href="../css/timeline.css">
 
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -36,7 +36,7 @@
 
     <div class="pre-loader">
         <div class="load-con">
-            <img src="img/eco/logo.png" class="animated fadeInDown" alt="">
+            <img src="../img/eco/logo.png" class="animated fadeInDown" alt="">
             <div class="spinner">
               <div class="bounce1"></div>
               <div class="bounce2"></div>
@@ -54,8 +54,8 @@
                         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                             <span class="fa fa-bars fa-lg"></span>
                         </button>
-                        <a class="navbar-brand" href="index_.html">
-                            <img src="img/eco/logo.png" alt="" class="logo">
+                        <a class="navbar-brand" href="../">
+                            <img src="../img/eco/logo.png" alt="" class="logo">
                         </a>
                     </div>
 
@@ -63,19 +63,19 @@
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
                         <ul class="nav navbar-nav navbar-right">
-                            <li><a href="index_.html#about">about</a>
+                            <li><a href="../#about">about</a>
                             </li>
-                            <li><a href="index_.html#houses">Houses</a>
+                            <li><a href="../#houses">Houses</a>
                             </li>
-                            <li><a href="index_.html#interest">Interest</a>
+                            <li><a href="../#interest">Interest</a>
                             </li>
-                            <li><a href="index_.html#photos">Media</a>
+                            <li><a href="../#photos">Media</a>
                             </li>
-                            <li><a href="orcasays.html">Orca Says</a>
+                            <li><a href="#">Orca Says</a>
                             </li>
                             <li><a class="joinUs" href="http://rc4.nus.edu.sg" target="_blank">Offical Website</a>
                             </li>
-                            <li><a href="index_.html#support">Contact</a>
+                            <li><a href="../#support">Contact</a>
                             </li>
                         </ul>
                     </div>
@@ -90,7 +90,7 @@
                     <p><br><br><br></p>
                     <div class="row">
                     <div class="col-md-2"></div>
-                    <div class="col-md-2"> <img src="img/orcasays_logo.png"></div>
+                    <div class="col-md-2"> <img src="../img/orcasays_logo.png"></div>
                         <div class="col-md-6 hidden-xs orcasays_caption">
                         <p><b>Orca Says</b> is a student-run multimedia publication by NUS Residential College 4. From coverage of the fast lives of residents to stimulating think pieces by residents, Orca Says is by the residents, for the residents (and everyone else).</p>
                         </div>
@@ -133,7 +133,7 @@
         <footer>
             <div class="container">
                 <a href="#" class="scrollpoint sp-effect3">
-                    <img src="img/eco/logo.png" alt="" class="logo">
+                    <img src="../img/eco/logo.png" alt="" class="logo">
                 </a>
                 <div class="social">
                     <a href="//facebook.com/NUSResidentialCollege4" target="_blank" class="scrollpoint sp-effect3"><i class="fa fa-facebook fa-lg"></i></a>
@@ -172,21 +172,19 @@
         <!-- END timeline item -->
     </template>
     
-    <script src="js/jquery-1.11.1.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/slick.min.js"></script>
-    <script src="js/placeholdem.min.js"></script>
-    <script src="js/rs-plugin/js/jquery.themepunch.plugins.min.js"></script>
-    <script src="js/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
-    <script src="js/waypoints.min.js"></script>
-    <script src="js/scripts_basic.js"></script>
+    <script src="../js/jquery-1.11.1.min.js"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/slick.min.js"></script>
+    <script src="../js/rs-plugin/js/jquery.themepunch.plugins.min.js"></script>
+    <script src="../js/rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
+    <script src="../js/waypoints.min.js"></script>
+    <script src="../js/scripts_basic.js"></script>
     <script>
         $(document).ready(function() {
             appMaster.preLoader();
         });
     </script>
-    <script type="text/javascript" src="http://orcasays.tumblr.com/api/read/json"></script>
-    <script>
+    <script type="text/javascript">
         function timeConverter(UNIX_timestamp){
           var a = new Date(UNIX_timestamp*1000);
           var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
@@ -199,17 +197,18 @@
           time[0] = date + ' ' + month + ' ' + year;
           time[1] = hour + ':' + min;
           return time;
-        }
-        for(i = 0; i < 10; i++)
+      }
+      function loadTumblr(tumblr_api_read) {
+        tumblr_api_read = tumblr_api_read.response;
+        for(i = 0; i < tumblr_api_read.total_posts; i++)
         {
             var content = document.querySelector('template').content;
             var title = content.querySelector('.timeline-header');
-            title.textContent = tumblr_api_read.posts[i]['regular-title'];
+            title.textContent = tumblr_api_read.posts[i]['title'];
             var body = content.querySelector('.timeline-body');
-            body.innerHTML = tumblr_api_read.posts[i]['regular-body'];
+            body.innerHTML = tumblr_api_read.posts[i]['body'];
 
-            //var time = timeConverter(0);
-            var time = timeConverter(tumblr_api_read.posts[i]['unix-timestamp']);
+            var time = timeConverter(tumblr_api_read.posts[i]['timestamp']);
             var timeText = content.querySelector('.timeText');
             timeText.textContent = time[1];
             var dateText = content.querySelector('.date');
@@ -218,6 +217,9 @@
             document.querySelector('.timeline').insertBefore(
                 document.importNode(content, true),document.querySelector('.contentBeforeThis'));
         }
+    }
+    </script>
+    <script type="text/javascript" src="https://api.tumblr.com/v2/blog/orcasays.tumblr.com/posts?callback=loadTumblr">
     </script>
 </body>
 

@@ -1,4 +1,4 @@
-@import url(http://fonts.googleapis.com/css?family=Lato:300,400,700,900);
+@import url(//fonts.googleapis.com/css?family=Lato:300,400,700,900);
 .video-container {
   position: relative;
   padding-bottom: 56.25%;
@@ -874,7 +874,7 @@ header .navbar-default.scrolled .navbar-brand {
 section .section-heading .divider:after {
   background: #339999;
 }
-section#about .about-img {
+.about-img {
   color: #fff;
   display: block;
   text-align: center;
@@ -900,11 +900,15 @@ section#about .about-img {
 section#about .section-heading {
   margin: 60px 0 30px;
 }
-section#about .about-img img{
+.about-img img{
   border-radius: 20px;
   padding: 10px;
   display: block;
   width: 100%;
+}
+
+.clickabe {
+  cursor: pointer;
 }
 section#about .about-item i.fa {
   border: 2px solid #66cc99;
@@ -1259,7 +1263,7 @@ form .form-control:focus {
 }
 
 /* popup for ig */
-.popup .popup_wrap {
+.popup .popup_content_wrap {
   position: relative;
 }
 .popup .popup_nav {
@@ -1297,9 +1301,6 @@ form .form-control:focus {
 }
 .popup .popup_details ul li {
   display: block;
-}
-.no-scroll {
-  overflow: hidden;
 }
 
 @media (min-width: 768px) and (max-width: 992px) {
