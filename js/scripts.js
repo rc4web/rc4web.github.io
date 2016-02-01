@@ -10,8 +10,23 @@ var appMaster = {
              'photo' : data.feed.entry[i]['gsx$igphotourl']['$t'],
              'type' : data.feed.entry[i]['gsx$igtype']['$t']
           };
+
+          var content = document.querySelector('template').content;
+          var type = content.querySelector('.typeFilter');
+          type.className = 'typeFilter ' + this.igList[i].type;
+
+          var bkgImage = content.querySelector('.clickabe');
+          bkgImage.src = this.igList[i].photo;
+
+          var igName = content.querySelector('.ig-name');
+          igName.textContent = this.igList[i].name;
+
+          document.querySelector('.ig-list').insertBefore(
+              document.importNode(content, true),document.querySelector('.contentBeforeThis'));
        }
-       console.log(this.igList);
+       appMaster.screensCarousel();
+
+
     },
 
     preLoader: function(){
@@ -61,7 +76,7 @@ var appMaster = {
         });
     },
 
-    screensCarousel: function() {        
+    screensCarousel: function() {
         // Screens Carousel
         $('.filtering').slick({
             slidesToShow: 3,
@@ -180,7 +195,7 @@ var appMaster = {
             onHoverStop: "off",
             fullScreenOffsetContainer: ""
         });
-        
+
     },
 
     scrollMenu: function(){
@@ -228,7 +243,7 @@ var appMaster = {
                 $("#igDetailsText").text("Theatre a collaborative form of fine art. Express yourself through stage play and screen play. Seek out like minded residents to perform a play on your very own stage!");
                 $("#myModal").modal();
             });
-        
+
     }
 
 }; // AppMaster
@@ -239,8 +254,6 @@ $(document).ready(function() {
     appMaster.smoothScroll();
 
     appMaster.reviewsCarousel();
-
-    appMaster.screensCarousel();
 
     appMaster.animateScript();
 
