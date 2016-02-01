@@ -1,4 +1,18 @@
 var appMaster = {
+    fetchIGs: function(data){
+      this.igList = [];
+      for(var i=0; i<data.feed.entry.length; i++)
+       {
+           this.igList[i] = {
+             'name' : data.feed.entry[i]['gsx$igname']['$t'],
+             'description' : data.feed.entry[i]['gsx$description']['$t'],
+             'timeslot' : data.feed.entry[i]['gsx$weeklytimeslots']['$t'],
+             'photo' : data.feed.entry[i]['gsx$igphotourl']['$t'],
+             'type' : data.feed.entry[i]['gsx$igtype']['$t']
+          };
+       }
+       console.log(this.igList);
+    },
 
     preLoader: function(){
         imageSources = []
@@ -6,6 +20,13 @@ var appMaster = {
             var sources = $(this).attr('src');
             imageSources.push(sources);
         });
+
+        $.ajax({
+            url: 'https://spreadsheets.google.com/feeds/list/1x6AIK5gzAghtu2SXc2D0qq6M-UHKpPuX2ykrZwVQNZg/1/public/values?alt=json',
+            dataType: "json",
+            success: this.fetchIGs
+        });
+
         if($(imageSources).load()){
             $('.pre-loader').fadeOut('slow');
         }
