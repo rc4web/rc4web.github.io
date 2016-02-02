@@ -16,7 +16,8 @@ var appMaster = {
           type.className = 'typeFilter ' + this.igList[i].type;
 
           var bkgImage = content.querySelector('.clickabe');
-          bkgImage.src = this.igList[i].photo;
+          if(this.igList[i].photo != '')
+            bkgImage.src = this.igList[i].photo;
 
           var igName = content.querySelector('.ig-name');
           igName.textContent = this.igList[i].name;
@@ -24,6 +25,7 @@ var appMaster = {
           document.querySelector('.ig-list').insertBefore(
               document.importNode(content, true),document.querySelector('.contentBeforeThis'));
        }
+       $('.contentBeforeThis').remove();
        appMaster.screensCarousel();
 
 

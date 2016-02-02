@@ -910,6 +910,11 @@ section#about .section-heading {
 .clickabe {
   cursor: pointer;
 }
+
+.ig-image {
+  width: 324px;
+  height: 210px;
+}
 section#about .about-item i.fa {
   border: 2px solid #66cc99;
   color: #66cc99;
@@ -1338,7 +1343,7 @@ form .form-control:focus {
   .collapse.in{
     display:block !important;
   }
-  
+
 }
 
 .bustable {
