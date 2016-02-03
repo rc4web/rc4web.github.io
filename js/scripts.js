@@ -15,7 +15,8 @@ var appMaster = {
           var type = content.querySelector('.typeFilter');
           type.className = 'typeFilter ' + this.igList[i].type;
 
-          var bkgImage = content.querySelector('.clickabe');
+          var bkgImage = content.querySelector('.ig-image');
+          bkgImage.className = 'clickabe ig-image ig' + i;
           if(this.igList[i].photo != '')
             bkgImage.src = this.igList[i].photo;
 
@@ -24,6 +25,16 @@ var appMaster = {
 
           document.querySelector('.ig-list').insertBefore(
               document.importNode(content, true),document.querySelector('.contentBeforeThis'));
+
+          (function(name, photo, desc) {
+             $('.ig'+i).click(function(){
+                 $("#igDetailsName").text(name);
+                 $("#igDetailsImage").attr("src",photo);
+                 $("#igDetailsText").text(desc);
+                 $("#myModal").modal();
+             });
+           })(this.igList[i].name, this.igList[i].photo, this.igList[i].description);
+
        }
        $('.contentBeforeThis').remove();
        appMaster.screensCarousel();
