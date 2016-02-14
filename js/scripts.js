@@ -11,6 +11,14 @@ var appMaster = {
              'type' : data.feed.entry[i]['gsx$igtype']['$t']
           };
 
+          //Quick Fix: Needs Refactoring
+          if(this.igList[i].type == 'Sports')
+            this.igList[i].type = 'three';
+          else if(this.igList[i].type == 'Others')
+            this.igList[i].type = 'one';
+          else if(this.igList[i].type == 'Performing Arts')
+            this.igList[i].type = 'two';
+
           var content = document.querySelector('template').content;
           var type = content.querySelector('.typeFilter');
           type.className = 'typeFilter ' + this.igList[i].type;
