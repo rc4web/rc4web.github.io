@@ -1,9 +1,9 @@
 var appMaster = {
     fetchIGs: function(data){
-      this.igList = [];
+      appMaster.igList = [];
       for(var i=0; i<data.feed.entry.length; i++)
        {
-           this.igList[i] = {
+           appMaster.igList[i] = {
              'name' : data.feed.entry[i]['gsx$igname']['$t'],
              'description' : data.feed.entry[i]['gsx$description']['$t'],
              'timeslot' : data.feed.entry[i]['gsx$weeklytimeslots']['$t'],
@@ -12,24 +12,24 @@ var appMaster = {
           };
 
           //Quick Fix: Needs Refactoring
-          if(this.igList[i].type == 'Sports')
-            this.igList[i].type = 'three';
-          else if(this.igList[i].type == 'Others')
-            this.igList[i].type = 'one';
-          else if(this.igList[i].type == 'Performing Arts')
-            this.igList[i].type = 'two';
+          if(appMaster.igList[i].type == 'Sports')
+            appMaster.igList[i].type = 'three';
+          else if(appMaster.igList[i].type == 'Others')
+            appMaster.igList[i].type = 'one';
+          else if(appMaster.igList[i].type == 'Performing Arts')
+            appMaster.igList[i].type = 'two';
 
           var content = document.querySelector('template').content;
           var type = content.querySelector('.typeFilter');
-          type.className = 'typeFilter ' + this.igList[i].type;
+          type.className = 'typeFilter ' + appMaster.igList[i].type;
 
           var bkgImage = content.querySelector('.ig-image');
           bkgImage.className = 'clickabe ig-image ig' + i;
-          if(this.igList[i].photo != '')
-            bkgImage.src = this.igList[i].photo;
+          if(appMaster.igList[i].photo != '')
+            bkgImage.src = appMaster.igList[i].photo;
 
           var igName = content.querySelector('.ig-name');
-          igName.textContent = this.igList[i].name;
+          igName.textContent = appMaster.igList[i].name;
 
           document.querySelector('.ig-list').insertBefore(
               document.importNode(content, true),document.querySelector('.contentBeforeThis'));
@@ -41,7 +41,7 @@ var appMaster = {
                  $("#igDetailsText").text(desc);
                  $("#myModal").modal();
              });
-           })(this.igList[i].name, this.igList[i].photo, this.igList[i].description);
+           })(appMaster.igList[i].name, appMaster.igList[i].photo, appMaster.igList[i].description);
 
        }
        $('.contentBeforeThis').remove();
@@ -234,6 +234,16 @@ var appMaster = {
 
 
     igLinkModals: function() {
+        for(var i = 0; i<appMaster.igList.length; i++) {
+          (function(name, photo, desc) {
+             $('.ig'+i).click(function(){
+                 $("#igDetailsName").text(name);
+                 $("#igDetailsImage").attr("src",photo);
+                 $("#igDetailsText").text(desc);
+                 $("#myModal").modal();
+             });
+           })(appMaster.igList[i].name, appMaster.igList[i].photo, appMaster.igList[i].description);
+        }
         $(".igJam").click(function(){
                 $("#igDetailsName").text("PB & Jam");
                 $("#igDetailsImage").attr("src","img/ig_jam.jpg");
@@ -271,6 +281,7 @@ var appMaster = {
 
 
 $(document).ready(function() {
+    appMaster.igList = [];
 
     appMaster.smoothScroll();
 
