@@ -1,4 +1,54 @@
 var appMaster = {
+    fetchIGs: function(data){
+      appMaster.igList = [];
+      for(var i=0; i<data.feed.entry.length; i++)
+       {
+           appMaster.igList[i] = {
+             'name' : data.feed.entry[i]['gsx$igname']['$t'],
+             'description' : data.feed.entry[i]['gsx$description']['$t'],
+             'timeslot' : data.feed.entry[i]['gsx$weeklytimeslots']['$t'],
+             'photo' : data.feed.entry[i]['gsx$igphotourl']['$t'],
+             'type' : data.feed.entry[i]['gsx$igtype']['$t']
+          };
+
+          //Quick Fix: Needs Refactoring
+          if(appMaster.igList[i].type == 'Sports')
+            appMaster.igList[i].type = 'three';
+          else if(appMaster.igList[i].type == 'Others')
+            appMaster.igList[i].type = 'one';
+          else if(appMaster.igList[i].type == 'Performing Arts')
+            appMaster.igList[i].type = 'two';
+
+          var content = document.querySelector('template').content;
+          var type = content.querySelector('.typeFilter');
+          type.className = 'typeFilter ' + appMaster.igList[i].type;
+
+          var bkgImage = content.querySelector('.ig-image');
+          bkgImage.className = 'clickabe ig-image ig' + i;
+          if(appMaster.igList[i].photo != '')
+            bkgImage.src = appMaster.igList[i].photo;
+
+          var igName = content.querySelector('.ig-name');
+          igName.textContent = appMaster.igList[i].name;
+
+          document.querySelector('.ig-list').insertBefore(
+              document.importNode(content, true),document.querySelector('.contentBeforeThis'));
+
+          (function(name, photo, desc) {
+             $('.ig'+i).click(function(){
+                 $("#igDetailsName").text(name);
+                 $("#igDetailsImage").attr("src",photo);
+                 $("#igDetailsText").text(desc);
+                 $("#myModal").modal();
+             });
+           })(appMaster.igList[i].name, appMaster.igList[i].photo, appMaster.igList[i].description);
+
+       }
+       $('.contentBeforeThis').remove();
+       appMaster.screensCarousel();
+
+
+    },
 
     preLoader: function(){
         imageSources = []
@@ -6,6 +56,13 @@ var appMaster = {
             var sources = $(this).attr('src');
             imageSources.push(sources);
         });
+
+        $.ajax({
+            url: 'https://spreadsheets.google.com/feeds/list/1x6AIK5gzAghtu2SXc2D0qq6M-UHKpPuX2ykrZwVQNZg/1/public/values?alt=json',
+            dataType: "json",
+            success: this.fetchIGs
+        });
+
         if($(imageSources).load()){
             $('.pre-loader').fadeOut('slow');
         }
@@ -40,7 +97,7 @@ var appMaster = {
         });
     },
 
-    screensCarousel: function() {        
+    screensCarousel: function() {
         // Screens Carousel
         $('.filtering').slick({
             slidesToShow: 3,
@@ -159,7 +216,7 @@ var appMaster = {
             onHoverStop: "off",
             fullScreenOffsetContainer: ""
         });
-        
+
     },
 
     scrollMenu: function(){
@@ -177,6 +234,16 @@ var appMaster = {
 
 
     igLinkModals: function() {
+        for(var i = 0; i<appMaster.igList.length; i++) {
+          (function(name, photo, desc) {
+             $('.ig'+i).click(function(){
+                 $("#igDetailsName").text(name);
+                 $("#igDetailsImage").attr("src",photo);
+                 $("#igDetailsText").text(desc);
+                 $("#myModal").modal();
+             });
+           })(appMaster.igList[i].name, appMaster.igList[i].photo, appMaster.igList[i].description);
+        }
         $(".igJam").click(function(){
                 $("#igDetailsName").text("PB & Jam");
                 $("#igDetailsImage").attr("src","img/ig_jam.jpg");
@@ -207,19 +274,18 @@ var appMaster = {
                 $("#igDetailsText").text("Theatre a collaborative form of fine art. Express yourself through stage play and screen play. Seek out like minded residents to perform a play on your very own stage!");
                 $("#myModal").modal();
             });
-        
+
     }
 
 }; // AppMaster
 
 
 $(document).ready(function() {
+    appMaster.igList = [];
 
     appMaster.smoothScroll();
 
     appMaster.reviewsCarousel();
-
-    appMaster.screensCarousel();
 
     appMaster.animateScript();
 
