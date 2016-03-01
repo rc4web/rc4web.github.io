@@ -211,6 +211,31 @@ section#about .about-item i.fa {
   transition: all 0.25s ease-in-out;
   width: 104px;
 }
+
+section#openday {
+  position: relative;
+}
+section#openday .openday-item {
+  text-align: center;
+  font-size: 17px;
+  line-height: 25px;
+  color: #999999;
+}
+section#openday .openday-item i.fa {
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+  border-radius: 50%;
+  padding: 35px;
+  -webkit-transition: all 0.25s ease-in-out;
+  -moz-transition: all 0.25s ease-in-out;
+  -ms-transition: all 0.25s ease-in-out;
+  -o-transition: all 0.25s ease-in-out;
+  transition: all 0.25s ease-in-out;
+  width: 104px;
+}
+
 section#houses .media > .pull-right {
   margin-left: 20px;
 }
@@ -906,6 +931,38 @@ section#about .section-heading {
   display: block;
   width: 100%;
 }
+.openday-img {
+  color: #fff;
+  display: block;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: #fff;
+  background-position: center center;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  border-bottom-style: none;
+  border: 2px solid #e5e5e5;
+  border-radius: 10px;
+  box-sizing: border-box;
+  margin: 10px;
+  vertical-align: middle;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  position: relative;
+}
+section#openday .section-heading {
+  margin: 60px 0 30px;
+}
+.openday-img img{
+  border-radius: 20px;
+  padding: 10px;
+  display: block;
+  width: 100%;
+}
 
 .clickabe {
   cursor: pointer;
@@ -930,6 +987,23 @@ section#about .about-item h3 {
 section#about .about-item p{
   text-align: left;
 }
+
+section#openday .openday-item i.fa {
+  border: 2px solid #66cc99;
+  color: #66cc99;
+}
+section#openday .openday-item:hover i.fa {
+  color: #ffffff;
+  background: #66cc99;
+}
+section#openday .openday-item h3 {
+  color: #339993;
+  text-align: left;
+}
+section#openday .openday-item p{
+  text-align: left;
+}
+
 section#houses {
   background: #f6f6f6;
 }
