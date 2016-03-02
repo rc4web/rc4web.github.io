@@ -247,7 +247,6 @@ section#houses .media.feature:first-child {
 }
 section#houses img {
   margin: 0 auto 0px;
-  height: 250px;
   overflow: hidden;
 }
 section#houses h4{
