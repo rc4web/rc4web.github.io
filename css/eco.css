@@ -109,6 +109,8 @@ header .navbar-default ul.navbar-nav li a.joinUs {
   -o-transition: all 0.25s ease-in-out;
   transition: all 0.25s ease-in-out;
 }
+
+
 header .navbar-default ul.navbar-nav li a.joinUs:after {
   display: none;
 }
@@ -514,7 +516,18 @@ section#joinUs {
   background-size: cover;
   padding: 70px 0;
 }
+section#openJoinUs {
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  padding: 0px 0;
+}
 section#joinUs .platforms {
+  margin: 5px auto 120px auto;
+  text-align: center;
+}
+section#openJoinUs .platforms {
   margin: 5px auto 120px auto;
   text-align: center;
 }
@@ -522,6 +535,11 @@ section#joinUs .platforms .btn {
   margin-right: 10px;
   margin-bottom: 20px;
 }
+section #openJoinUs .platforms .btn {
+  margin-right: 10px;
+  margin-bottom: 20px;
+}
+
 /* support section */
 section#support {
   padding: 0 0 150px 0;
@@ -766,7 +784,7 @@ form textarea.form-control {
     padding: 10px;
     text-align: center;
   }
-  header .navbar-default ul.navbar-nav li a.joinUs {
+  header .navbar-default ul.navbar-nav li a.joinUs li a.openJoinUs{
     background: none !important;
     -webkit-border-radius: 0em;
     -moz-border-radius: 0em;
@@ -820,7 +838,7 @@ header .navbar-default ul.navbar-nav li a {
   background: none;
   text-shadow: 1px 1px 3px #000;
 }
-header .navbar-default ul.navbar-nav li a.joinUs {
+header .navbar-default ul.navbar-nav li a.joinUs li a.openJoinUs{
   color: #339993;
   background: #ffffff;
   text-shadow: none;
@@ -840,7 +858,7 @@ header .navbar-default ul.navbar-nav li a.joinUs {
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#ffffff, endColorstr=#e0e0e0, GradientType=1);
   /* IE6-9 fallback on horizontal gradient */
 }
-header .navbar-default ul.navbar-nav li a.joinUs:hover {
+header .navbar-default ul.navbar-nav li a.joinUs:hover li a.openJoinUs:hover {
   color: #40bfbf;
   background: #ffffff;
   /* Old browsers */
@@ -865,12 +883,12 @@ header .navbar-default ul.navbar-nav li a.joinUs:hover {
   transition: all 0.25s ease-in-out;
 }
 
-header .navbar-default.scrolled ul.navbar-nav li a.joinUs {
+header .navbar-default.scrolled ul.navbar-nav li a.joinUs li a.openJoinUs {
   color: #ffffff;
   background: #339999;
 }
 
-header .navbar-default.scrolled ul.navbar-nav li a.joinUs:hover {
+header .navbar-default.scrolled ul.navbar-nav li a.joinUs:hover li a.openjoinUs:hover{
   color: #ffffff;
   background: #66cc99;
   -webkit-transition: all 0.25s ease-in-out;
@@ -1115,6 +1133,9 @@ section#demo header h1:after {
 }
 /* Get app Section */
 section#joinUs {
+  background: url("../img/eco/bk-eco-ga.jpg");
+}
+section#openJoinUs{
   background: url("../img/eco/bk-eco-ga.jpg");
 }
 section#joinUs header {
