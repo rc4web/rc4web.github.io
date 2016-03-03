@@ -109,6 +109,8 @@ header .navbar-default ul.navbar-nav li a.joinUs {
   -o-transition: all 0.25s ease-in-out;
   transition: all 0.25s ease-in-out;
 }
+
+
 header .navbar-default ul.navbar-nav li a.joinUs:after {
   display: none;
 }
@@ -211,6 +213,31 @@ section#about .about-item i.fa {
   transition: all 0.25s ease-in-out;
   width: 104px;
 }
+
+section#openday {
+  position: relative;
+}
+section#openday .openday-item {
+  text-align: center;
+  font-size: 17px;
+  line-height: 25px;
+  color: #999999;
+}
+section#openday .openday-item i.fa {
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+  border-radius: 50%;
+  padding: 35px;
+  -webkit-transition: all 0.25s ease-in-out;
+  -moz-transition: all 0.25s ease-in-out;
+  -ms-transition: all 0.25s ease-in-out;
+  -o-transition: all 0.25s ease-in-out;
+  transition: all 0.25s ease-in-out;
+  width: 104px;
+}
+
 section#houses .media > .pull-right {
   margin-left: 20px;
 }
@@ -493,7 +520,18 @@ section#joinUs {
   background-size: cover;
   padding: 70px 0;
 }
+section#openJoinUs {
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  padding: 0px 0;
+}
 section#joinUs .platforms {
+  margin: 5px auto 120px auto;
+  text-align: center;
+}
+section#openJoinUs .platforms {
   margin: 5px auto 120px auto;
   text-align: center;
 }
@@ -501,6 +539,11 @@ section#joinUs .platforms .btn {
   margin-right: 10px;
   margin-bottom: 20px;
 }
+section #openJoinUs .platforms .btn {
+  margin-right: 10px;
+  margin-bottom: 20px;
+}
+
 /* support section */
 section#support {
   padding: 0 0 150px 0;
@@ -745,7 +788,15 @@ form textarea.form-control {
     padding: 10px;
     text-align: center;
   }
-  header .navbar-default ul.navbar-nav li a.joinUs {
+  header .navbar-default ul.navbar-nav li a.joinUs{
+    background: none !important;
+    -webkit-border-radius: 0em;
+    -moz-border-radius: 0em;
+    -ms-border-radius: 0em;
+    -o-border-radius: 0em;
+    border-radius: 0em;
+  }
+  header .navbar-default ul.navbar-nav li a.openJoinUs{
     background: none !important;
     -webkit-border-radius: 0em;
     -moz-border-radius: 0em;
@@ -799,7 +850,7 @@ header .navbar-default ul.navbar-nav li a {
   background: none;
   text-shadow: 1px 1px 3px #000;
 }
-header .navbar-default ul.navbar-nav li a.joinUs {
+header .navbar-default ul.navbar-nav li a.openJoinUs{
   color: #339993;
   background: #ffffff;
   text-shadow: none;
@@ -818,6 +869,50 @@ header .navbar-default ul.navbar-nav li a.joinUs {
   /* W3C */
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#ffffff, endColorstr=#e0e0e0, GradientType=1);
   /* IE6-9 fallback on horizontal gradient */
+}
+header .navbar-default ul.navbar-nav li a.joinUs{
+  color: #339993;
+  background: #ffffff;
+  text-shadow: none;
+  /* Old browsers */
+  background: -moz-linear-gradient(180deg, #ffffff 0%, #e0e0e0 100%);
+  /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, right bottom, color-stop(0%, #ffffff), color-stop(100%, #e0e0e0));
+  /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(180deg, #ffffff 0%, #e0e0e0 100%);
+  /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(180deg, #ffffff 0%, #e0e0e0 100%);
+  /* Opera 11.10+ */
+  background: -ms-linear-gradient(180deg, #ffffff 0%, #e0e0e0 100%);
+  /* IE10+ */
+  background: linear-gradient(180deg, #ffffff 0%, #e0e0e0 100%);
+  /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#ffffff, endColorstr=#e0e0e0, GradientType=1);
+  /* IE6-9 fallback on horizontal gradient */
+}
+header .navbar-default ul.navbar-nav li a.openJoinUs:hover {
+  color: #40bfbf;
+  background: #ffffff;
+  /* Old browsers */
+  background: -moz-linear-gradient(180deg, #ffffff 0%, #cccccc 100%);
+  /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, right bottom, color-stop(0%, #ffffff), color-stop(100%, #cccccc));
+  /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(180deg, #ffffff 0%, #cccccc 100%);
+  /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(180deg, #ffffff 0%, #cccccc 100%);
+  /* Opera 11.10+ */
+  background: -ms-linear-gradient(180deg, #ffffff 0%, #cccccc 100%);
+  /* IE10+ */
+  background: linear-gradient(180deg, #ffffff 0%, #cccccc 100%);
+  /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#ffffff, endColorstr=#cccccc, GradientType=1);
+  /* IE6-9 fallback on horizontal gradient */
+  -webkit-transition: all 0.25s ease-in-out;
+  -moz-transition: all 0.25s ease-in-out;
+  -ms-transition: all 0.25s ease-in-out;
+  -o-transition: all 0.25s ease-in-out;
+  transition: all 0.25s ease-in-out;
 }
 header .navbar-default ul.navbar-nav li a.joinUs:hover {
   color: #40bfbf;
@@ -843,13 +938,25 @@ header .navbar-default ul.navbar-nav li a.joinUs:hover {
   -o-transition: all 0.25s ease-in-out;
   transition: all 0.25s ease-in-out;
 }
-
+header .navbar-default.scrolled ul.navbar-nav li a.openJoinUs {
+  color: #ffffff;
+  background: #339999;
+}
 header .navbar-default.scrolled ul.navbar-nav li a.joinUs {
   color: #ffffff;
   background: #339999;
 }
 
-header .navbar-default.scrolled ul.navbar-nav li a.joinUs:hover {
+header .navbar-default.scrolled ul.navbar-nav li a.openjoinUs:hover{
+  color: #ffffff;
+  background: #66cc99;
+  -webkit-transition: all 0.25s ease-in-out;
+  -moz-transition: all 0.25s ease-in-out;
+  -ms-transition: all 0.25s ease-in-out;
+  -o-transition: all 0.25s ease-in-out;
+  transition: all 0.25s ease-in-out;
+}
+header .navbar-default.scrolled ul.navbar-nav li a.joinUs:hover{
   color: #ffffff;
   background: #66cc99;
   -webkit-transition: all 0.25s ease-in-out;
@@ -910,6 +1017,38 @@ section#about .section-heading {
   display: block;
   width: 100%;
 }
+.openday-img {
+  color: #fff;
+  display: block;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background-color: #fff;
+  background-position: center center;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  border-bottom-style: none;
+  border: 2px solid #e5e5e5;
+  border-radius: 10px;
+  box-sizing: border-box;
+  margin: 10px;
+  vertical-align: middle;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  position: relative;
+}
+section#openday .section-heading {
+  margin: 60px 0 30px;
+}
+.openday-img img{
+  border-radius: 20px;
+  padding: 10px;
+  display: block;
+  width: 100%;
+}
 
 .clickabe {
   cursor: pointer;
@@ -934,6 +1073,23 @@ section#about .about-item h3 {
 section#about .about-item p{
   text-align: left;
 }
+
+section#openday .openday-item i.fa {
+  border: 2px solid #66cc99;
+  color: #66cc99;
+}
+section#openday .openday-item:hover i.fa {
+  color: #ffffff;
+  background: #66cc99;
+}
+section#openday .openday-item h3 {
+  color: #339993;
+  text-align: left;
+}
+section#openday .openday-item p{
+  text-align: left;
+}
+
 section#houses {
   background: #f6f6f6;
 }
@@ -1045,6 +1201,9 @@ section#demo header h1:after {
 }
 /* Get app Section */
 section#joinUs {
+  background: url("../img/eco/bk-eco-ga.jpg");
+}
+section#openJoinUs{
   background: url("../img/eco/bk-eco-ga.jpg");
 }
 section#joinUs header {
