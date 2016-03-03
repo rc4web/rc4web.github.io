@@ -788,7 +788,15 @@ form textarea.form-control {
     padding: 10px;
     text-align: center;
   }
-  header .navbar-default ul.navbar-nav li a.joinUs li a.openJoinUs{
+  header .navbar-default ul.navbar-nav li a.joinUs{
+    background: none !important;
+    -webkit-border-radius: 0em;
+    -moz-border-radius: 0em;
+    -ms-border-radius: 0em;
+    -o-border-radius: 0em;
+    border-radius: 0em;
+  }
+  header .navbar-default ul.navbar-nav li a.openJoinUs{
     background: none !important;
     -webkit-border-radius: 0em;
     -moz-border-radius: 0em;
