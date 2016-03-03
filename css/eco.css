@@ -842,7 +842,7 @@ header .navbar-default ul.navbar-nav li a {
   background: none;
   text-shadow: 1px 1px 3px #000;
 }
-header .navbar-default ul.navbar-nav li a.joinUs li a.openJoinUs{
+header .navbar-default ul.navbar-nav li a.openJoinUs{
   color: #339993;
   background: #ffffff;
   text-shadow: none;
@@ -862,7 +862,27 @@ header .navbar-default ul.navbar-nav li a.joinUs li a.openJoinUs{
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#ffffff, endColorstr=#e0e0e0, GradientType=1);
   /* IE6-9 fallback on horizontal gradient */
 }
-header .navbar-default ul.navbar-nav li a.joinUs:hover li a.openJoinUs:hover {
+header .navbar-default ul.navbar-nav li a.joinUs{
+  color: #339993;
+  background: #ffffff;
+  text-shadow: none;
+  /* Old browsers */
+  background: -moz-linear-gradient(180deg, #ffffff 0%, #e0e0e0 100%);
+  /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, right bottom, color-stop(0%, #ffffff), color-stop(100%, #e0e0e0));
+  /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(180deg, #ffffff 0%, #e0e0e0 100%);
+  /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(180deg, #ffffff 0%, #e0e0e0 100%);
+  /* Opera 11.10+ */
+  background: -ms-linear-gradient(180deg, #ffffff 0%, #e0e0e0 100%);
+  /* IE10+ */
+  background: linear-gradient(180deg, #ffffff 0%, #e0e0e0 100%);
+  /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#ffffff, endColorstr=#e0e0e0, GradientType=1);
+  /* IE6-9 fallback on horizontal gradient */
+}
+header .navbar-default ul.navbar-nav li a.openJoinUs:hover {
   color: #40bfbf;
   background: #ffffff;
   /* Old browsers */
@@ -886,13 +906,49 @@ header .navbar-default ul.navbar-nav li a.joinUs:hover li a.openJoinUs:hover {
   -o-transition: all 0.25s ease-in-out;
   transition: all 0.25s ease-in-out;
 }
-
-header .navbar-default.scrolled ul.navbar-nav li a.joinUs li a.openJoinUs {
+header .navbar-default ul.navbar-nav li a.joinUs:hover {
+  color: #40bfbf;
+  background: #ffffff;
+  /* Old browsers */
+  background: -moz-linear-gradient(180deg, #ffffff 0%, #cccccc 100%);
+  /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, right bottom, color-stop(0%, #ffffff), color-stop(100%, #cccccc));
+  /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(180deg, #ffffff 0%, #cccccc 100%);
+  /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(180deg, #ffffff 0%, #cccccc 100%);
+  /* Opera 11.10+ */
+  background: -ms-linear-gradient(180deg, #ffffff 0%, #cccccc 100%);
+  /* IE10+ */
+  background: linear-gradient(180deg, #ffffff 0%, #cccccc 100%);
+  /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#ffffff, endColorstr=#cccccc, GradientType=1);
+  /* IE6-9 fallback on horizontal gradient */
+  -webkit-transition: all 0.25s ease-in-out;
+  -moz-transition: all 0.25s ease-in-out;
+  -ms-transition: all 0.25s ease-in-out;
+  -o-transition: all 0.25s ease-in-out;
+  transition: all 0.25s ease-in-out;
+}
+header .navbar-default.scrolled ul.navbar-nav li a.openJoinUs {
+  color: #ffffff;
+  background: #339999;
+}
+header .navbar-default.scrolled ul.navbar-nav li a.joinUs {
   color: #ffffff;
   background: #339999;
 }
 
-header .navbar-default.scrolled ul.navbar-nav li a.joinUs:hover li a.openjoinUs:hover{
+header .navbar-default.scrolled ul.navbar-nav li a.openjoinUs:hover{
+  color: #ffffff;
+  background: #66cc99;
+  -webkit-transition: all 0.25s ease-in-out;
+  -moz-transition: all 0.25s ease-in-out;
+  -ms-transition: all 0.25s ease-in-out;
+  -o-transition: all 0.25s ease-in-out;
+  transition: all 0.25s ease-in-out;
+}
+header .navbar-default.scrolled ul.navbar-nav li a.joinUs:hover{
   color: #ffffff;
   background: #66cc99;
   -webkit-transition: all 0.25s ease-in-out;
