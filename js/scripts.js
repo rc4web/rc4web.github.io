@@ -34,17 +34,9 @@ var appMaster = {
           document.querySelector('.ig-list').insertBefore(
               document.importNode(content, true),document.querySelector('.contentBeforeThis'));
 
-          (function(name, photo, desc) {
-             $('.ig'+i).click(function(){
-                 $("#igDetailsName").text(name);
-                 $("#igDetailsImage").attr("src",photo);
-                 $("#igDetailsText").text(desc);
-                 $("#myModal").modal();
-             });
-           })(appMaster.igList[i].name, appMaster.igList[i].photo, appMaster.igList[i].description);
-
        }
        $('.contentBeforeThis').remove();
+       appMaster.igLinkModals();
        appMaster.screensCarousel();
 
 
@@ -244,37 +236,6 @@ var appMaster = {
              });
            })(appMaster.igList[i].name, appMaster.igList[i].photo, appMaster.igList[i].description);
         }
-        $(".igJam").click(function(){
-                $("#igDetailsName").text("PB & Jam");
-                $("#igDetailsImage").attr("src","img/ig_jam.jpg");
-                $("#igDetailsText").text("HELLOO");
-                $("#myModal").modal();
-            });
-            $(".igOrcasays").click(function(){
-                $("#igDetailsName").text("Orca Says");
-                $("#igDetailsImage").attr("src","img/ig_write.jpg");
-                $("#igDetailsText").text("Orca Says is a student-run multimedia publication by NUS Residential College 4. From coverage of the fast lives of residents to stimulating think pieces by residents, Orca Says is by the residents, for the residents (and everyone else).");
-                $("#myModal").modal();
-            });
-            $(".igBaking").click(function(){
-                $("#igDetailsName").text("Baking Club");
-                $("#igDetailsImage").attr("src","img/ig_bake.jpg");
-                $("#igDetailsText").text("Do you like muffins, cookies or just love to eat? Join baking club to learn and hone your baking skills. Savour your finished product with your friends and neighbours!");
-                $("#myModal").modal();
-            });
-            $(".igShake").click(function(){
-                $("#igDetailsName").text("Shake It Off");
-                $("#igDetailsImage").attr("src","img/ig_sports.jpg");
-                $("#igDetailsText").text("Whether you're new to exercise or a fitness veteran, workouts are hard work. Make hard work fun together with other residents. Work out that muscle you never knew you had.");
-                $("#myModal").modal();
-            });
-            $(".igTheatre").click(function(){
-                $("#igDetailsName").text("Theatre Club");
-                $("#igDetailsImage").attr("src","img/ig_theatre.jpg");
-                $("#igDetailsText").text("Theatre a collaborative form of fine art. Express yourself through stage play and screen play. Seek out like minded residents to perform a play on your very own stage!");
-                $("#myModal").modal();
-            });
-
     }
 
 }; // AppMaster
