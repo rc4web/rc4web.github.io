@@ -392,8 +392,8 @@
                     if (settings.showImageText || settings.likeButton) {
                         lightboxContent.append($("<span>", { class: "fb-preview-text" }));
                     }
-                    overlay.append($("<img>", { class: "fb-preview-img-prev", src: "src/prev-icon.png" }));
-                    overlay.append($("<img>", { class: "fb-preview-img-next", src: "src/next-icon.png" }));
+                    overlay.append($("<img>", { class: "fb-preview-img-prev", src: "img/plugins/prev-icon.png" }));
+                    overlay.append($("<img>", { class: "fb-preview-img-next", src: "img/plugins/next-icon.png" }));
 
                     $("body").append(overlay);
                     overlay = $(".fb-preview-overlay");
